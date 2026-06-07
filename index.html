@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Maria Fernanda · 4 años de amor y metas cumplidas</title>
-    <!-- Google Fonts -->
+    <title>Maria Fernanda ✨ 4 años de amor neón ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     <style>
         * {
             margin: 0;
@@ -17,73 +16,65 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fecfef 100%);
+            background: #0a0f1e;
             min-height: 100vh;
             padding: 2rem 1rem;
             position: relative;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: "❤️🌸❤️";
-            font-size: 200px;
+        /* Canvas de partículas (I LOVE YOU) */
+        #particleCanvas {
             position: fixed;
-            bottom: -50px;
-            left: -80px;
-            opacity: 0.05;
-            white-space: nowrap;
-            pointer-events: none;
-            transform: rotate(-15deg);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
-        }
-
-        body::after {
-            content: "✨🏆✨";
-            font-size: 150px;
-            position: fixed;
-            top: 20%;
-            right: -60px;
-            opacity: 0.06;
             pointer-events: none;
-            transform: rotate(10deg);
-            z-index: 0;
+            opacity: 0.85;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
+        /* Tarjeta principal con fondo sólido semi-transparente para legibilidad */
         .card {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(3px);
+            background: rgba(10, 15, 30, 0.92);
+            backdrop-filter: blur(4px);
             border-radius: 3rem;
             padding: 2rem 1.8rem;
-            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 215, 215, 0.6);
-            transition: transform 0.3s ease;
+            box-shadow: 0 0 20px cyan, 0 0 5px magenta;
             text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.6);
+            animation: borderNeon 2s infinite alternate;
         }
 
+        @keyframes borderNeon {
+            0% { box-shadow: 0 0 8px cyan, 0 0 8px magenta; border-color: rgba(0, 255, 255, 0.5);}
+            100% { box-shadow: 0 0 30px cyan, 0 0 30px magenta; border-color: rgba(255, 0, 255, 0.7);}
+        }
+
+        /* Título neón */
         .title {
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(120deg, #c31432, #ff4e50);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #fff;
+            text-shadow: 0 0 5px #ff4e50, 0 0 10px #f9d423, 0 0 20px #ff4e50;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 12px rgba(0,0,0,0.05);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #b83b3b;
+            color: #ffd966;
             font-weight: 500;
-            letter-spacing: 1px;
-            border-bottom: 2px dashed #ffb6b9;
+            text-shadow: 0 0 8px #ffaa33;
+            border-bottom: 2px solid #ffb6b9;
             display: inline-block;
             padding-bottom: 6px;
             margin-bottom: 1.8rem;
@@ -98,192 +89,119 @@
         }
 
         .counter-box {
-            background: rgba(255, 248, 245, 0.9);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 2rem;
             padding: 1rem 1.5rem;
             min-width: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s;
-            border: 1px solid #ffe0e0;
+            box-shadow: 0 0 12px cyan;
+            border: 1px solid rgba(0, 255, 255, 0.5);
         }
 
         .counter-box i {
             font-size: 2rem;
-            color: #e6425e;
-            margin-bottom: 0.5rem;
+            color: #ff66aa;
+            text-shadow: 0 0 8px hotpink;
         }
 
         .counter-number {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #b12a3e;
-            line-height: 1.2;
-        }
-
-        .counter-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            color: #a14747;
-        }
-
-        .small-note {
-            font-size: 0.8rem;
-            color: #c07272;
-            margin-top: 6px;
+            color: #fff;
+            text-shadow: 0 0 10px cyan;
         }
 
         .timer-section {
-            background: #fff0f0;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 2rem;
             padding: 1.3rem;
             margin: 1rem 0 2rem;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-        }
-
-        .timer-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #c0392b;
-            margin-bottom: 1rem;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
+            box-shadow: 0 0 15px magenta;
         }
 
         .time-unit {
-            background: white;
+            background: rgba(255,255,240,0.15);
             border-radius: 1.5rem;
             padding: 0.6rem 1rem;
             min-width: 80px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            backdrop-filter: blur(4px);
         }
 
         .time-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #e63946;
-            line-height: 1;
+            color: #ff99cc;
+            text-shadow: 0 0 10px hotpink;
         }
 
-        .time-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #b55b5b;
-        }
-
-        .aniversary-message {
-            font-weight: 500;
-            color: #d44c6a;
-            background: #ffe7e7;
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* Sección especial: orgullo por su carrera + metas */
+        /* Sección orgullo */
         .pride-section {
-            background: linear-gradient(145deg, #fff5f0, #ffece5);
+            background: rgba(0, 0, 0, 0.75);
             border-radius: 2rem;
             padding: 1.5rem;
             margin: 1.8rem 0;
             text-align: left;
             border: 2px solid #ffb7b0;
-            box-shadow: 0 12px 18px rgba(0,0,0,0.08);
+            box-shadow: 0 0 18px #ff44aa;
         }
 
         .badge-senati {
-            background: #b22234;
+            background: linear-gradient(90deg, #b22234, #ff4d4d);
             color: #ffd966;
             display: inline-block;
             padding: 0.2rem 1rem;
             border-radius: 40px;
             font-weight: bold;
             font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
+            box-shadow: 0 0 10px gold;
         }
 
         .pride-title {
             font-family: 'Dancing Script', cursive;
             font-size: 1.7rem;
-            color: #a1302c;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1rem;
+            color: #ffaa88;
+            text-shadow: 0 0 8px red;
         }
 
-        .pride-text {
-            font-size: 1rem;
+        .pride-text, .letter-text {
+            color: #f5f5f5;
+            text-shadow: 0 0 4px #000;
             line-height: 1.6;
-            margin-bottom: 0.8rem;
-            color: #3e2c2a;
         }
 
-        .goal-list {
-            margin: 1rem 0 0.5rem 1.3rem;
+        .goal-list li, .promise-list li {
+            color: #ffddcc;
+            margin: 0.5rem 0;
         }
 
-        .goal-list li {
-            margin: 0.6rem 0;
-            font-weight: 500;
-            color: #b13b48;
+        /* Propuesta destacada neón */
+        .proposal-highlight {
+            background: rgba(255, 215, 0, 0.25);
+            border-radius: 2rem;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            border-left: 8px solid #ffb347;
+            border-right: 8px solid #ffb347;
+            box-shadow: 0 0 25px gold;
+            backdrop-filter: blur(4px);
+        }
+
+        .proposal-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffdd99;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 8px orange;
         }
 
         .love-letter {
-            background: #fffaf5;
+            background: rgba(0, 0, 0, 0.75);
             padding: 1.8rem;
             border-radius: 2rem;
             margin: 2rem 0;
             text-align: left;
-            box-shadow: 0 10px 18px rgba(0,0,0,0.05);
+            box-shadow: 0 0 20px cyan;
             border-left: 8px solid #ff7b89;
-        }
-
-        .letter-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #c0392b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .letter-text {
-            font-size: 1rem;
-            line-height: 1.65;
-            color: #2d2a2a;
-            margin-bottom: 1rem;
-        }
-
-        .promise-list {
-            margin: 1.2rem 0 0.5rem 1.5rem;
-        }
-
-        .promise-list li {
-            margin: 0.5rem 0;
-            font-weight: 500;
-            color: #9b2e3c;
-        }
-
-        .signature {
-            margin-top: 1rem;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
-            text-align: right;
-            color: #e6737f;
-            font-weight: 600;
         }
 
         .heart-button {
@@ -295,7 +213,7 @@
             padding: 0.8rem 2rem;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px red;
             transition: 0.2s;
             margin: 1rem 0;
             display: inline-flex;
@@ -305,8 +223,7 @@
 
         .heart-button:hover {
             transform: scale(1.03);
-            background: linear-gradient(95deg, #e63e40, #f0b81f);
-            box-shadow: 0 12px 22px rgba(0,0,0,0.25);
+            box-shadow: 0 0 40px red;
         }
 
         .floating-heart {
@@ -319,64 +236,41 @@
         }
 
         @keyframes floatUpLove {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 1;
-            }
-            80% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-250px) scale(1.2);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-300px) scale(1.2); opacity: 0; }
         }
 
         footer {
             margin-top: 2rem;
             text-align: center;
             font-size: 0.8rem;
-            color: #cd8181;
-            background: rgba(255,255,240,0.6);
+            color: #ffccaa;
+            background: rgba(0,0,0,0.6);
             padding: 0.8rem;
             border-radius: 2rem;
-            backdrop-filter: blur(2px);
         }
 
         @media (max-width: 680px) {
-            .title {
-                font-size: 2.3rem;
-            }
-            .counter-number {
-                font-size: 1.8rem;
-            }
-            .time-number {
-                font-size: 1.5rem;
-            }
-            .card {
-                padding: 1.2rem;
-            }
-            .pride-title {
-                font-size: 1.4rem;
-            }
+            .title { font-size: 2.3rem; }
+            .counter-number { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
+<canvas id="particleCanvas"></canvas>
+
 <div class="container">
     <div class="card">
-        <!-- Título con nombre de María Fernanda -->
         <h1 class="title">
-            <i class="fas fa-heart" style="color:#ff5e6e;"></i> 
+            <i class="fas fa-heart" style="color:#ff5e6e; filter: drop-shadow(0 0 5px red);"></i> 
             Maria Fernanda, 4 años de mi vida 
-            <i class="fas fa-heart" style="color:#ff5e6e;"></i>
+            <i class="fas fa-heart" style="color:#ff5e6e; filter: drop-shadow(0 0 5px red);"></i>
         </h1>
         <div class="subtitle">
             <i class="fas fa-calendar-alt"></i> 10 de Junio — Mi eterno amor, mi orgullo, mi todo
         </div>
 
-        <!-- Contadores -->
         <div class="counters">
             <div class="counter-box">
                 <i class="fas fa-hourglass-half"></i>
@@ -392,225 +286,233 @@
             </div>
         </div>
 
-        <!-- Temporizador para el 10 de junio -->
         <div class="timer-section">
             <div class="timer-title">
                 <i class="far fa-clock"></i> Faltan para celebrar nuestro 4to aniversario:
             </div>
             <div class="timer" id="countdownTimer">
-                <div class="time-unit">
-                    <div class="time-number" id="daysLeft">00</div>
-                    <div class="time-label">Días</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-number" id="hoursLeft">00</div>
-                    <div class="time-label">Horas</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-number" id="minutesLeft">00</div>
-                    <div class="time-label">Minutos</div>
-                </div>
-                <div class="time-unit">
-                    <div class="time-number" id="secondsLeft">00</div>
-                    <div class="time-label">Segundos</div>
-                </div>
+                <div class="time-unit"><div class="time-number" id="daysLeft">00</div><div class="time-label">Días</div></div>
+                <div class="time-unit"><div class="time-number" id="hoursLeft">00</div><div class="time-label">Horas</div></div>
+                <div class="time-unit"><div class="time-number" id="minutesLeft">00</div><div class="time-label">Minutos</div></div>
+                <div class="time-unit"><div class="time-number" id="secondsLeft">00</div><div class="time-label">Segundos</div></div>
             </div>
             <div id="anniversarySpecialMsg" class="aniversary-message">
                 <i class="fas fa-star-of-life"></i> 4 años, una vida de emociones <i class="fas fa-star-of-life"></i>
             </div>
         </div>
 
-        <!-- SECCIÓN NUEVA: Orgullo por su carrera y metas -->
+        <!-- Sección orgullo -->
         <div class="pride-section">
-            <div class="badge-senati">
-                <i class="fas fa-graduation-cap"></i> SENATI · Seguridad Industrial
-            </div>
-            <div class="pride-title">
-                <i class="fas fa-trophy" style="color:#d4af37;"></i> Mi orgullo más grande, María Fernanda
-            </div>
+            <div class="badge-senati"><i class="fas fa-graduation-cap"></i> SENATI · Seguridad Industrial</div>
+            <div class="pride-title"><i class="fas fa-trophy"></i> Mi orgullo más grande, María Fernanda</div>
             <div class="pride-text">
                 <strong>Estás terminando la carrera de Seguridad Industrial en el SENATI</strong> y no tengo palabras para describir lo que siento por ti. 
                 Verte luchar, crecer y construir un futuro brillante me llena de admiración. Eres fuerte, inteligente y valiente. 
                 Sé que serás una profesional increíble, velando por la seguridad de los demás, y yo estaré a tu lado aplaudiendo cada uno de tus logros.
                 <br><br>
-                <i class="fas fa-quote-left" style="color:#c0392b;"></i> 
-                Quiero que cumplas <strong>TODAS</strong> tus metas, las de hoy y las que aún sueñas. 
+                <i class="fas fa-quote-left"></i> Quiero que cumplas <strong>TODAS</strong> tus metas, las de hoy y las que aún sueñas. 
                 Nada me haría más feliz que verte alcanzar cada estrella que te propongas. 
                 Y si alguna vez el camino es difícil, recuerda que aquí estoy yo, tu compañero, para sostenerte y celebrar contigo.
             </div>
             <ul class="goal-list">
                 <li><i class="fas fa-hard-hat"></i> <strong>Graduarte con honores</strong> — porque sé que lo lograrás.</li>
-                <li><i class="fas fa-chart-line"></i> <strong>Crecer en tu profesión</strong> y salvar vidas con tus conocimientos.</li>
-                <li><i class="fas fa-plane"></i> <strong>Viajar y conocer el mundo</strong> — juntos, por supuesto.</li>
-                <li><i class="fas fa-home"></i> <strong>Construir un hogar lleno de amor y estabilidad</strong>, el que tanto mereces.</li>
-                <li><i class="fas fa-heart"></i> <strong>Ser infinitamente feliz</strong>, porque tu felicidad es la mía.</li>
+                <li><i class="fas fa-chart-line"></i> <strong>Crecer en tu profesión</strong> y salvar vidas.</li>
+                <li><i class="fas fa-plane"></i> <strong>Viajar y conocer el mundo</strong> — juntos.</li>
+                <li><i class="fas fa-home"></i> <strong>Construir un hogar lleno de amor</strong>.</li>
+                <li><i class="fas fa-heart"></i> <strong>Ser infinitamente feliz</strong>.</li>
             </ul>
-            <div style="font-size: 0.9rem; margin-top: 12px; background: #fff0e6; border-radius: 30px; padding: 8px 12px; text-align: center;">
-                <i class="fas fa-hands-helping"></i> Prometo apoyarte en cada paso hacia tus sueños. <strong>¡Nada ni nadie apagará tu luz!</strong>
+            <div style="background: rgba(0,0,0,0.5); border-radius: 30px; padding: 8px; text-align: center;">
+                <i class="fas fa-hands-helping"></i> Prometo apoyarte en cada paso hacia tus sueños. ¡Nada apagará tu luz!
             </div>
         </div>
 
-        <!-- CARTA DE AMOR PERSONALIZADA -->
+        <!-- Carta -->
         <div class="love-letter">
-            <div class="letter-title">
-                <i class="fas fa-envelope-open-text"></i> Para María Fernanda, el amor de mi vida
-            </div>
+            <div class="letter-title"><i class="fas fa-envelope-open-text"></i> Para María Fernanda, el amor de mi vida</div>
             <div class="letter-text">
                 Mi amor, mi compañera de alma:
                 <br><br>
-                ya mismo cumplimos 4 años y no recuerdo ese 10 de junio cuando supe que contigo sería para siempre quisiera pedirte la mano formalmente con todas nuestras familias como se debe por que sinseramente soy un idiota por no hacerlo anteriormente. 
-                No hay palabras para describir lo que siento por ti —eres mi calma, mi motivación, mi mayor orgullo.
+                <div class="proposal-highlight">
+                    <div class="proposal-text">💍 Ya mismo cumplimos 4 años y no recuerdo ese 10 de junio cuando supe que contigo sería para siempre por mi accidente. <strong>Quiero pedirte la mano formalmente, con todas nuestras familias, como se debe.</strong> Porque, sinceramente, soy un idiota por no haberlo hecho antes. aceptas?</div>
+                </div>
+                <br>
+                tambien quiero decirte que no hay palabras para describir lo que siento por ti —eres mi calma, mi motivación, mi mayor orgullo.
                 <br><br>
-                Verte avanzar en la carrera de <strong>Seguridad Industrial en SENATI</strong> me llena de admiración. Eres una mujer luchadora, 
-                y sé que vas a cambiar vidas con tu profesión. Me siento sumamente orgulloso de ti, más de lo que las palabras pueden expresar.
+                Verte avanzar en <strong>Seguridad Industrial en SENATI</strong> me llena de admiración. Eres una mujer luchadora, y sé que vas a cambiar vidas.
                 <br><br>
-                <strong>Una vida junto a ti es lo único que deseo.</strong> Quiero despertar cada día a tu lado, celebrar tus triunfos, abrazarte en los días grises 
-                y construir un futuro donde ningún sueño quede sin cumplir. No quiero perderte, porque sin ti el mundo perdería su color.
+                <strong>Una vida junto a ti es lo único que deseo.</strong> Quiero despertar cada día a tu lado, celebrar tus triunfos, abrazarte en los días grises y construir un futuro donde ningún sueño quede sin cumplir. No quiero perderte, porque sin ti el mundo perdería su color.
                 <br><br>
-                Gracias por elegirme, por crecer conmigo, por regalarme tu sonrisa. Este 4to aniversario es solo el comienzo de una historia eterna. 
-                Te prometo luchar cada día por nosotros, por tu felicidad y por verte brillar.
+                Gracias por elegirme, por crecer conmigo, por regalarme tu sonrisa. Este 4to aniversario es solo el comienzo de una historia eterna. Te prometo luchar cada día por nosotros.
             </div>
             <ul class="promise-list">
-                <li><i class="fas fa-check-circle"></i> Apoyarte siempre para que <strong>cumplas cada meta profesional y personal</strong>.</li>
+                <li><i class="fas fa-check-circle"></i> Apoyarte siempre para que cumplas cada meta.</li>
                 <li><i class="fas fa-check-circle"></i> Cuidar tu corazón como el tesoro más valioso.</li>
-                <li><i class="fas fa-check-circle"></i> Ser tu lugar seguro, tu amigo y tu amante incondicional.</li>
-                <li><i class="fas fa-check-circle"></i> Recordarte cada día lo increíble que eres, María Fernanda.</li>
+                <li><i class="fas fa-check-circle"></i> Ser tu lugar seguro, tu amigo y tu amante.</li>
+                <li><i class="fas fa-check-circle"></i> Recordarte cada día lo increíble que eres.</li>
             </ul>
-            <div class="signature">
-                Con toda mi alma, <br> Tu compañero de vida, que te ama sin medida. ✨
-            </div>
+            <div class="signature">Con toda mi alma, <br> Tu compañero de vida, que te ama sin medida. ✨</div>
         </div>
 
-        <!-- Botón de corazones -->
         <button class="heart-button" id="sendHeartsBtn">
             <i class="fas fa-heartbeat"></i> Tocar aquí, lluvia de amor para MF
-            <i class="fas fa-heart" style="animation: pulse 1s infinite;"></i>
+            <i class="fas fa-heart"></i>
         </button>
-        <p style="font-size: 0.75rem; color:#b26b6b; margin-top: 0.2rem;"><i class="fas fa-smile-wink"></i> Presiona y envía una cascada de corazones para la mujer de mi vida</p>
+        <p style="color:#ffcc99;"><i class="fas fa-smile-wink"></i> Presiona y envía corazones + confeti</p>
     </div>
-    <footer>
-        <i class="fas fa-infinity"></i> 10 de Junio · 4 años junto a Maria Fernanda · Mis metas son las tuyas <i class="fas fa-infinity"></i>
-    </footer>
+    <footer><i class="fas fa-infinity"></i> 10 de Junio · 4 años junto a Maria Fernanda · Mis metas son las tuyas <i class="fas fa-infinity"></i></footer>
 </div>
 
 <script>
-    // FECHA DE INICIO: 10 de Junio de 2022
+    // ==================== CANVAS CON PUNTOS (I LOVE YOU) ====================
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let points = [];
+
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.originalX = x;
+            this.originalY = y;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            // retorno suave a la posición original
+            this.x += (this.originalX - this.x) * 0.03;
+            this.y += (this.originalY - this.y) * 0.03;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2.2, 0, Math.PI * 2);
+            ctx.fillStyle = `hsl(${Math.sin(Date.now() * 0.002 + this.x) * 60 + 280}, 100%, 65%)`;
+            ctx.fill();
+        }
+    }
+
+    function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        generatePoints();
+    }
+
+    function generatePoints() {
+        points = [];
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.fillStyle = "white";
+        tempCtx.font = "bold 90px 'Dancing Script', cursive";
+        tempCtx.textAlign = "center";
+        tempCtx.textBaseline = "middle";
+        tempCtx.fillText("I LOVE YOU", width/2, height/2 - 50);
+        tempCtx.font = "50px 'Dancing Script'";
+        tempCtx.fillText("Maria Fernanda", width/2, height/2 + 60);
+        
+        const imageData = tempCtx.getImageData(0, 0, width, height);
+        const step = 10;
+        for (let y = 0; y < height; y += step) {
+            for (let x = 0; x < width; x += step) {
+                const idx = (y * width + x) * 4;
+                if (imageData.data[idx + 3] > 100) {
+                    points.push(new Point(x + (Math.random() - 0.5) * 5, y + (Math.random() - 0.5) * 5));
+                }
+            }
+        }
+        // puntos adicionales de fondo
+        for (let i = 0; i < 200; i++) {
+            points.push(new Point(Math.random() * width, Math.random() * height));
+        }
+    }
+
+    function animatePoints() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "rgba(10, 15, 30, 0.15)";
+        ctx.fillRect(0, 0, width, height);
+        for (let p of points) {
+            p.update();
+            p.draw();
+        }
+        requestAnimationFrame(animatePoints);
+    }
+
+    window.addEventListener('resize', () => resizeCanvas());
+    resizeCanvas();
+    animatePoints();
+
+    // ==================== CONTADORES Y CORAZONES ====================
     const START_DATE = new Date(2022, 5, 10);
-    
     function updateDaysTogether() {
         const today = new Date();
-        const startUTC = Date.UTC(START_DATE.getFullYear(), START_DATE.getMonth(), START_DATE.getDate());
+        const startUTC = Date.UTC(2022, 5, 10);
         const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
-        const diffTime = todayUTC - startUTC;
-        const daysTogether = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-        document.getElementById('daysTogether').innerText = daysTogether >= 0 ? daysTogether : 0;
-        const monthsTogether = Math.floor(daysTogether / 30.44);
-        document.getElementById('monthsTogether').innerText = monthsTogether >= 0 ? monthsTogether : 0;
+        const days = Math.floor((todayUTC - startUTC) / (1000*60*60*24));
+        document.getElementById('daysTogether').innerText = days > 0 ? days : 0;
+        document.getElementById('monthsTogether').innerText = Math.floor(days / 30.44);
     }
-
-    function getNextAnniversaryDate() {
+    function getNextAnniversary() {
         const today = new Date();
-        const currentYear = today.getFullYear();
-        let anniversary = new Date(currentYear, 5, 10);
-        const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        if (todayDateOnly > anniversary) {
-            return new Date(currentYear + 1, 5, 10);
-        }
-        return anniversary;
+        let anni = new Date(today.getFullYear(), 5, 10);
+        if (today > anni) anni = new Date(today.getFullYear()+1, 5, 10);
+        return anni;
     }
-
     function updateCountdown() {
-        const nextAnniversary = getNextAnniversaryDate();
-        const now = new Date();
-        const difference = nextAnniversary - now;
-        if (difference <= 0) {
+        const next = getNextAnniversary();
+        const diff = next - new Date();
+        if (diff <= 0) {
             document.getElementById('daysLeft').innerText = "00";
             document.getElementById('hoursLeft').innerText = "00";
             document.getElementById('minutesLeft').innerText = "00";
             document.getElementById('secondsLeft').innerText = "00";
-            const msgDiv = document.getElementById('anniversarySpecialMsg');
-            msgDiv.innerHTML = '<i class="fas fa-grin-hearts"></i> ¡HOY ES NUESTRO DÍA! ¡FELICES 4 AÑOS, MARIA FERNANDA! <i class="fas fa-grin-hearts"></i>';
-            msgDiv.style.background = "#ffc2c2";
+            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-grin-hearts"></i> ¡HOY ES NUESTRO DÍA! ¡FELICES 4 AÑOS!';
             return;
         }
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (86400000)) / (3600000));
-        const minutes = Math.floor((difference % 3600000) / 60000);
-        const seconds = Math.floor((difference % 60000) / 1000);
-        document.getElementById('daysLeft').innerText = days < 10 ? '0' + days : days;
-        document.getElementById('hoursLeft').innerText = hours < 10 ? '0' + hours : hours;
-        document.getElementById('minutesLeft').innerText = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById('secondsLeft').innerText = seconds < 10 ? '0' + seconds : seconds;
-        if (days === 0 && hours < 12) {
-            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-hourglass-start"></i> ¡Ya casi, mi vida! El gran día está a punto de llegar 🌹';
-        } else if (days < 3 && days > 0) {
-            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-heart"></i> ¡Faltan poquitos días para celebrar 4 años! ❤️';
-        } else {
-            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-star-of-life"></i> 4 años, una vida de emociones <i class="fas fa-star-of-life"></i>';
-        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        document.getElementById('daysLeft').innerText = days < 10 ? '0'+days : days;
+        document.getElementById('hoursLeft').innerText = hours < 10 ? '0'+hours : hours;
+        document.getElementById('minutesLeft').innerText = mins < 10 ? '0'+mins : mins;
+        document.getElementById('secondsLeft').innerText = secs < 10 ? '0'+secs : secs;
     }
-
     updateDaysTogether();
     updateCountdown();
-    setInterval(() => {
-        updateDaysTogether();
-        updateCountdown();
-    }, 1000);
+    setInterval(() => { updateDaysTogether(); updateCountdown(); }, 1000);
 
-    // CORAZONES FLOTANTES
     const btn = document.getElementById('sendHeartsBtn');
     function createFloatingHeart() {
         const heart = document.createElement('div');
         heart.classList.add('floating-heart');
-        const heartTypes = ['❤️', '💖', '💗', '💓', '💕', '💞', '💘', '❤️‍🔥', '🌸', '🌹', '✨', '💌', '🏆', '🎓'];
-        const randomHeart = heartTypes[Math.floor(Math.random() * heartTypes.length)];
-        heart.innerText = randomHeart;
-        const size = 1 + Math.random() * 2.2;
-        heart.style.fontSize = `${size}rem`;
-        heart.style.left = `${Math.random() * window.innerWidth}px`;
+        const icons = ['❤️','💖','💗','💓','💕','💞','💘','❤️‍🔥','🌸','🌹','✨','💌','🏆','💍'];
+        heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+        heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
         heart.style.bottom = '-20px';
-        const duration = 1.5 + Math.random() * 1.3;
-        heart.style.animation = `floatUpLove ${duration}s ease-out forwards`;
+        heart.style.animationDuration = (1.5 + Math.random()) + 's';
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), duration * 1000);
+        setTimeout(() => heart.remove(), 2500);
     }
-    
-    function burstHearts(count = 28) {
-        for (let i = 0; i < count; i++) {
-            setTimeout(() => createFloatingHeart(), i * 40);
-        }
+    function burstHearts(c) { for(let i=0;i<c;i++) setTimeout(()=>createFloatingHeart(), i*40); }
+    function shootConfetti() {
+        canvasConfetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#ff4e50','#f9d423','#ff6a6a'] });
+        canvasConfetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0, y: 0.7 } });
+        canvasConfetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1, y: 0.7 } });
     }
-    
     btn.addEventListener('click', () => {
-        burstHearts(35);
+        burstHearts(45);
+        shootConfetti();
         btn.style.transform = 'scale(0.97)';
         setTimeout(() => btn.style.transform = '', 150);
     });
-    
-    window.addEventListener('load', () => {
-        setTimeout(() => burstHearts(12), 600);
-    });
-    
-    setInterval(() => {
-        const titleIcons = document.querySelectorAll('.title i');
-        titleIcons.forEach(icon => {
-            icon.style.transform = 'scale(1.2)';
-            setTimeout(() => icon.style.transform = '', 300);
-        });
-    }, 4000);
-    
-    function checkSpecialToday() {
-        const today = new Date();
-        if (today.getMonth() === 5 && today.getDate() === 10) {
-            const msg = document.getElementById('anniversarySpecialMsg');
-            if (msg.innerText.indexOf('HOY ES NUESTRO DÍA') === -1) {
-                msg.innerHTML = '<i class="fas fa-grin-hearts"></i> ¡HOY ES NUESTRO DÍA! ¡FELICES 4 AÑOS, MARIA FERNANDA! <i class="fas fa-grin-hearts"></i>';
-                msg.style.background = "#ffc2c2";
-            }
-        }
-    }
-    checkSpecialToday();
-    setInterval(checkSpecialToday, 60000);
+    window.addEventListener('load', () => { burstHearts(12); shootConfetti(); });
 </script>
 </body>
 </html>
