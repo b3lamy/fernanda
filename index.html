@@ -2,2426 +2,615 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edu Assist</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Maria Fernanda · 4 años de amor y metas cumplidas</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2ecc71;
-            --accent: #f39c12;
-            --success: #27ae60;
-            --warning: #e67e22;
-            --error: #e74c3c;
-            --dark: #2c3e50;
-            --darker: #1a252f;
-            --light: #ecf0f1;
-            --gray: #7f8c8d;
-            --user-msg: rgba(52, 152, 219, 0.15);
-            --bot-msg: rgba(255, 255, 255, 0.08);
-            --sidebar: #34495e;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --glass: rgba(255, 255, 255, 0.1);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --glow: 0 0 20px rgba(52, 152, 219, 0.3);
-            --education: #9b59b6;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #2c3e50 100%);
-            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fecfef 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 1800px;
-            height: 95vh;
-            background: rgba(44, 62, 80, 0.9);
-            border-radius: 24px;
-            box-shadow: var(--shadow), var(--glow);
-            display: flex;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
             position: relative;
+            overflow-x: hidden;
         }
 
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        body::before {
+            content: "❤️🌸❤️";
+            font-size: 200px;
+            position: fixed;
+            bottom: -50px;
+            left: -80px;
+            opacity: 0.05;
+            white-space: nowrap;
             pointer-events: none;
+            transform: rotate(-15deg);
             z-index: 0;
         }
 
-        .particle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 6s infinite ease-in-out;
+        body::after {
+            content: "✨🏆✨";
+            font-size: 150px;
+            position: fixed;
+            top: 20%;
+            right: -60px;
+            opacity: 0.06;
+            pointer-events: none;
+            transform: rotate(10deg);
+            z-index: 0;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .sidebar {
-            width: 280px;
-            background: var(--sidebar);
-            color: white;
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            transition: all 0.3s ease;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
             z-index: 2;
-            position: relative;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 28px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo-icon {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: var(--glow);
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-section {
-            margin-bottom: 28px;
-        }
-
-        .nav-title {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-bottom: 14px;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            border-radius: 12px;
-            margin-bottom: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid transparent;
-        }
-
-        .nav-item:hover {
-            background: rgba(52, 152, 219, 0.2);
-            transform: translateX(5px);
-            border-color: rgba(52, 152, 219, 0.3);
-        }
-
-        .nav-item.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: var(--glow);
-            border-color: transparent;
-        }
-
-        .stats {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: auto;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 13px;
-        }
-
-        .stat-value {
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .main-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: transparent;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            padding: 20px 28px;
-            background: rgba(44, 62, 80, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(20px);
-        }
-
-        .header-info h2 {
-            font-size: 24px;
-            color: var(--light);
-            font-weight: 300;
-            letter-spacing: -0.5px;
-        }
-
-        .header-info p {
-            color: var(--primary);
-            font-size: 13px;
-            margin-top: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .action-btn:hover {
-            background: var(--primary);
-            color: var(--light);
-            box-shadow: var(--glow);
-            transform: translateY(-2px);
-        }
-
-        .content-container {
-            flex: 1;
-            padding: 24px 28px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            scroll-behavior: smooth;
-        }
-
-        .module-panel {
-            display: none;
-            flex-direction: column;
-            gap: 20px;
-            height: 100%;
-        }
-
-        .module-panel.active {
-            display: flex;
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .panel-title {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .panel-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            max-width: 600px;
-            line-height: 1.5;
-        }
-
-        .panel-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .panel-btn {
-            padding: 10px 20px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .panel-btn.primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: var(--glow);
-        }
-
-        .panel-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow);
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .dashboard-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .dashboard-card:hover::before {
-            left: 100%;
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--glow);
-            border-color: var(--primary);
-        }
-
-        .dashboard-card h3 {
-            font-size: 16px;
-            margin-bottom: 16px;
-            color: var(--light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dashboard-stat {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .dashboard-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .module-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .module-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .module-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .module-card:hover::before {
-            left: 100%;
-        }
-
-        .module-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow), var(--glow);
-            border-color: var(--primary);
-        }
-
-        .module-icon {
-            font-size: 36px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .module-title {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--light);
-            font-weight: 600;
-        }
-
-        .module-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-        }
-
-        .chat-floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            box-shadow: var(--glow);
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .chat-floating-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1001;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .chat-modal-content {
-            width: 90%;
-            max-width: 500px;
-            height: 80vh;
-            max-height: 80vh;
-            background: var(--dark);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .chat-modal-header {
-            padding: 16px 20px;
-            background: var(--sidebar);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-modal-body {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-        }
-
-        .chat-modal-body .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            min-height: 0;
-        }
-
-        .close-chat-btn {
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .messages-container {
-            flex: 1;
-            padding: 20px 24px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            scroll-behavior: smooth;
-            position: relative;
-            min-height: 0;
-            max-height: 100%;
-        }
-
-        .message {
-            max-width: 85%;
-            display: flex;
-            gap: 12px;
-            animation: messageSlide 0.4s ease;
-        }
-
-        @keyframes messageSlide {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
-        }
-
-        .user-message {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .user-avatar {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light);
-            box-shadow: var(--glow);
-        }
-
-        .bot-avatar {
-            background: linear-gradient(135deg, var(--education), #8e44ad);
-            color: white;
-            box-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
-        }
-
-        .message-content {
-            padding: 16px 20px;
-            border-radius: 18px;
-            line-height: 1.5;
-            position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-        }
-
-        .user-message .message-content {
-            background: var(--user-msg);
-            border-bottom-right-radius: 6px;
-            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.15);
-        }
-
-        .bot-message .message-content {
-            background: var(--bot-msg);
-            border-bottom-left-radius: 6px;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
-        }
-
-        .message-time {
-            font-size: 11px;
-            color: var(--gray);
-            margin-top: 8px;
-            text-align: right;
-            opacity: 0.7;
-        }
-
-        .bot-message .message-time {
-            text-align: left;
-        }
-
-        .quick-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-
-        .quick-action {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 8px 14px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--light);
-        }
-
-        .quick-action:hover {
-            background: var(--primary);
-            color: var(--light);
-            transform: translateY(-2px);
-            box-shadow: var(--glow);
-        }
-
-        .typing-indicator {
-            display: none;
-            align-self: flex-start;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .typing-dots {
-            display: flex;
-            gap: 4px;
-            background: var(--bot-msg);
-            padding: 16px 20px;
-            border-radius: 18px;
-            border-bottom-left-radius: 6px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) { animation-delay: 0s; }
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-            30% { transform: translateY(-8px); opacity: 1; }
-        }
-
-        .input-area {
-            padding: 20px 24px;
-            background: rgba(44, 62, 80, 0.9);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            gap: 12px;
-            backdrop-filter: blur(20px);
-        }
-
-        .message-input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            outline: none;
-            font-size: 15px;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-        }
-
-        .message-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .message-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .send-button {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light);
-            border: none;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 18px;
-            box-shadow: var(--glow);
-        }
-
-        .send-button:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
-        }
-
-        .input-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .input-action {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .input-action:hover {
-            background: var(--primary);
-            color: var(--light);
-            transform: scale(1.05);
-            box-shadow: var(--glow);
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 6px;
-        }
-
-        .status-online {
-            background: var(--success);
-            box-shadow: 0 0 10px var(--success);
-        }
-
-        .status-processing {
-            background: var(--warning);
-            box-shadow: 0 0 10px var(--warning);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            color: white;
-            z-index: 10000;
-            max-width: 350px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .notification.success {
-            background: rgba(39, 174, 96, 0.9);
-        }
-
-        .notification.error {
-            background: rgba(231, 76, 60, 0.9);
-        }
-
-        .notification.info {
-            background: rgba(52, 152, 219, 0.9);
-        }
-
-        .notification.warning {
-            background: rgba(230, 126, 34, 0.9);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-
-        .messages-container::-webkit-scrollbar,
-        .content-container::-webkit-scrollbar,
-        .sidebar::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .messages-container::-webkit-scrollbar-track,
-        .content-container::-webkit-scrollbar-track,
-        .sidebar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .messages-container::-webkit-scrollbar-thumb,
-        .content-container::-webkit-scrollbar-thumb,
-        .sidebar::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .messages-container::-webkit-scrollbar-thumb:hover,
-        .content-container::-webkit-scrollbar-thumb:hover,
-        .sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
-        }
-
-        @media (max-width: 1200px) {
-            .app-container {
-                flex-direction: column;
-                height: 95vh;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                padding: 20px;
-            }
-
-            .stats {
-                display: none;
-            }
-
-            .messages-container {
-                padding: 16px 20px;
-            }
-
-            .message {
-                max-width: 90%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .message {
-                max-width: 95%;
-            }
-
-            .input-area {
-                padding: 16px 20px;
-            }
-
-            .header {
-                padding: 16px 20px;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .module-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .chat-modal-content {
-                width: 95%;
-                height: 85vh;
-                max-height: 85vh;
-            }
-        }
-
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            padding: 40px;
-        }
-
-        .login-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            max-width: 400px;
+        .card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(3px);
+            border-radius: 3rem;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 215, 215, 0.6);
+            transition: transform 0.3s ease;
             text-align: center;
         }
 
-        .login-title {
-            font-size: 28px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #c31432, #ff4e50);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.05);
         }
 
-        .login-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 30px;
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b83b3b;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed #ffb6b9;
+            display: inline-block;
+            padding-bottom: 6px;
+            margin-bottom: 1.8rem;
         }
 
-        .login-form {
+        .counters {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0 1.5rem;
         }
 
-        .login-input {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light);
-            font-size: 16px;
-            transition: all 0.3s;
+        .counter-box {
+            background: rgba(255, 248, 245, 0.9);
+            border-radius: 2rem;
+            padding: 1rem 1.5rem;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            border: 1px solid #ffe0e0;
         }
 
-        .login-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        .counter-box i {
+            font-size: 2rem;
+            color: #e6425e;
+            margin-bottom: 0.5rem;
         }
 
-        .login-button {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light);
-            border: none;
-            font-size: 16px;
+        .counter-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #b12a3e;
+            line-height: 1.2;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--glow);
+            color: #a14747;
         }
 
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+        .small-note {
+            font-size: 0.8rem;
+            color: #c07272;
+            margin-top: 6px;
+        }
+
+        .timer-section {
+            background: #fff0f0;
+            border-radius: 2rem;
+            padding: 1.3rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        .timer-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #c0392b;
+            margin-bottom: 1rem;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 0.6rem 1rem;
+            min-width: 80px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e63946;
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b55b5b;
+        }
+
+        .aniversary-message {
+            font-weight: 500;
+            color: #d44c6a;
+            background: #ffe7e7;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Sección especial: orgullo por su carrera + metas */
+        .pride-section {
+            background: linear-gradient(145deg, #fff5f0, #ffece5);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            text-align: left;
+            border: 2px solid #ffb7b0;
+            box-shadow: 0 12px 18px rgba(0,0,0,0.08);
+        }
+
+        .badge-senati {
+            background: #b22234;
+            color: #ffd966;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .pride-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.7rem;
+            color: #a1302c;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .pride-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            color: #3e2c2a;
+        }
+
+        .goal-list {
+            margin: 1rem 0 0.5rem 1.3rem;
+        }
+
+        .goal-list li {
+            margin: 0.6rem 0;
+            font-weight: 500;
+            color: #b13b48;
+        }
+
+        .love-letter {
+            background: #fffaf5;
+            padding: 1.8rem;
+            border-radius: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.05);
+            border-left: 8px solid #ff7b89;
+        }
+
+        .letter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #c0392b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .letter-text {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #2d2a2a;
+            margin-bottom: 1rem;
+        }
+
+        .promise-list {
+            margin: 1.2rem 0 0.5rem 1.5rem;
+        }
+
+        .promise-list li {
+            margin: 0.5rem 0;
+            font-weight: 500;
+            color: #9b2e3c;
+        }
+
+        .signature {
+            margin-top: 1rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            text-align: right;
+            color: #e6737f;
+            font-weight: 600;
+        }
+
+        .heart-button {
+            background: linear-gradient(95deg, #ff4e50, #f9d423);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            margin: 1rem 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .heart-button:hover {
+            transform: scale(1.03);
+            background: linear-gradient(95deg, #e63e40, #f0b81f);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.25);
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            bottom: 0;
+            font-size: 1.8rem;
+            animation: floatUpLove 2s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUpLove {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-250px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #cd8181;
+            background: rgba(255,255,240,0.6);
+            padding: 0.8rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(2px);
+        }
+
+        @media (max-width: 680px) {
+            .title {
+                font-size: 2.3rem;
+            }
+            .counter-number {
+                font-size: 1.8rem;
+            }
+            .time-number {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .pride-title {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="particles" id="particlesContainer"></div>
-        
-        <!-- Pantalla de Login -->
-        <div class="login-container" id="loginContainer">
-            <div class="login-card">
-                <div class="logo" style="justify-content: center; margin-bottom: 20px;">
-                    <div class="logo-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <div class="logo-text">Edu Assist</div>
-                </div>
-                <h1 class="login-title">Asistente Virtual Docente</h1>
-                <p class="login-subtitle">Inicia sesión para acceder a la plataforma</p>
-                
-                <div class="login-form">
-                    <input type="text" class="login-input" id="loginUsername" placeholder="Usuario" value="docente">
-                    <input type="password" class="login-input" id="loginPassword" placeholder="Contraseña" value="password">
-                    <button class="login-button" id="loginButton">
-                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                    </button>
-                </div>
-                
-                <p style="margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 14px;">
-                    Usa: docente / password
-                </p>
+
+<div class="container">
+    <div class="card">
+        <!-- Título con nombre de María Fernanda -->
+        <h1 class="title">
+            <i class="fas fa-heart" style="color:#ff5e6e;"></i> 
+            Maria Fernanda, 4 años de mi vida 
+            <i class="fas fa-heart" style="color:#ff5e6e;"></i>
+        </h1>
+        <div class="subtitle">
+            <i class="fas fa-calendar-alt"></i> 10 de Junio — Mi eterno amor, mi orgullo, mi todo
+        </div>
+
+        <!-- Contadores -->
+        <div class="counters">
+            <div class="counter-box">
+                <i class="fas fa-hourglass-half"></i>
+                <div class="counter-number" id="daysTogether">0</div>
+                <div class="counter-label">Días a tu lado</div>
+                <div class="small-note">❤️ desde el 10/06/2022</div>
+            </div>
+            <div class="counter-box">
+                <i class="fas fa-gift"></i>
+                <div class="counter-number" id="monthsTogether">0</div>
+                <div class="counter-label">Meses de magia</div>
+                <div class="small-note">✨ a tu lado, mi sueño ✨</div>
             </div>
         </div>
-        
-        <!-- Aplicación Principal (oculta inicialmente) -->
-        <div id="mainApp" style="display: none; width: 100%; height: 100%;">
-            <div class="sidebar">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <div class="logo-text">Edu Assist</div>
+
+        <!-- Temporizador para el 10 de junio -->
+        <div class="timer-section">
+            <div class="timer-title">
+                <i class="far fa-clock"></i> Faltan para celebrar nuestro 4to aniversario:
+            </div>
+            <div class="timer" id="countdownTimer">
+                <div class="time-unit">
+                    <div class="time-number" id="daysLeft">00</div>
+                    <div class="time-label">Días</div>
                 </div>
-                
-                <div class="nav-section">
-                    <div class="nav-title">Módulos Principales</div>
-                    <div class="nav-item active" data-module="dashboard">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </div>
-                    <div class="nav-item" data-module="planificacion">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Planificación</span>
-                    </div>
-                    <div class="nav-item" data-module="silabos">
-                        <i class="fas fa-book"></i>
-                        <span>Sílabos</span>
-                    </div>
-                    <div class="nav-item" data-module="materiales">
-                        <i class="fas fa-palette"></i>
-                        <span>Materiales</span>
-                    </div>
-                    <div class="nav-item" data-module="evaluacion">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Evaluación</span>
-                    </div>
+                <div class="time-unit">
+                    <div class="time-number" id="hoursLeft">00</div>
+                    <div class="time-label">Horas</div>
                 </div>
-                
-                <div class="nav-section">
-                    <div class="nav-title">Recursos</div>
-                    <div class="nav-item" data-module="capacitacion">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Capacitación IA</span>
-                    </div>
-                    <div class="nav-item" data-module="configuracion">
-                        <i class="fas fa-cog"></i>
-                        <span>Configuración</span>
-                    </div>
+                <div class="time-unit">
+                    <div class="time-number" id="minutesLeft">00</div>
+                    <div class="time-label">Minutos</div>
                 </div>
-                
-                <div class="stats">
-                    <div class="stat-item">
-                        <span><i class="fas fa-brain status-online"></i> Estado:</span>
-                        <span class="stat-value">Conectado</span>
-                    </div>
-                    <div class="stat-item">
-                        <span><i class="fas fa-clock status-processing"></i> Tiempo:</span>
-                        <span class="stat-value" id="uptimeCounter">00:00:00</span>
-                    </div>
-                    <div class="stat-item">
-                        <span><i class="fas fa-database"></i> Documentos:</span>
-                        <span class="stat-value" id="queryCounter">0</span>
-                    </div>
+                <div class="time-unit">
+                    <div class="time-number" id="secondsLeft">00</div>
+                    <div class="time-label">Segundos</div>
                 </div>
             </div>
-            
-            <div class="main-area">
-                <div class="header">
-                    <div class="header-info">
-                        <h2 id="moduleTitle">Dashboard Principal</h2>
-                        <p><i class="fas fa-circle status-online"></i> <span id="userWelcome">Bienvenido, Docente</span></p>
-                    </div>
-                    <div class="header-actions">
-                        <div class="action-btn" onclick="toggleTheme()" title="Cambiar tema">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <div class="action-btn" onclick="exportAllData()" title="Exportar datos">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <div class="action-btn" onclick="showHelp()" title="Ayuda">
-                            <i class="fas fa-question-circle"></i>
-                        </div>
-                        <div class="action-btn" onclick="logout()" title="Cerrar sesión">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="content-container" id="contentContainer">
-                    <!-- Dashboard -->
-                    <div class="module-panel active" id="dashboard-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Dashboard Principal</h1>
-                                <p class="panel-subtitle">Asistente virtual docente - Gestión educativa integral</p>
-                            </div>
-                            <div class="panel-actions">
-                                <button class="panel-btn primary" onclick="quickGenerate()">
-                                    <i class="fas fa-bolt"></i> Generación Rápida
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card" onclick="generatePlanificacion()">
-                                <h3><i class="fas fa-calendar-alt"></i> Generar planificación</h3>
-                                <div class="dashboard-stat" id="planificacionesCount">5</div>
-                                <p class="dashboard-desc">Sesiones de clase creadas</p>
-                            </div>
-                            <div class="dashboard-card" onclick="generateSilabo()">
-                                <h3><i class="fas fa-book"></i> Crear sílabo</h3>
-                                <div class="dashboard-stat" id="silabosCount">3</div>
-                                <p class="dashboard-desc">Programas académicos generados</p>
-                            </div>
-                            <div class="dashboard-card" onclick="generateMaterial()">
-                                <h3><i class="fas fa-palette"></i> Material visual</h3>
-                                <div class="dashboard-stat" id="materialesCount">8</div>
-                                <p class="dashboard-desc">Recursos educativos creados</p>
-                            </div>
-                            <div class="dashboard-card" onclick="generateEvaluacion()">
-                                <h3><i class="fas fa-chart-line"></i> Evaluar competencias</h3>
-                                <div class="dashboard-stat" id="evaluacionesCount">6</div>
-                                <p class="dashboard-desc">Instrumentos de evaluación</p>
-                            </div>
-                        </div>
-                        
-                        <div class="module-cards">
-                            <div class="module-card" onclick="generatePlanificacion()">
-                                <div class="module-icon">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <h3 class="module-title">Generar planificación</h3>
-                                <p class="module-desc">Crea sesiones de clase completas en segundos, alineadas con el currículo nacional y adaptadas a diferentes estilos de aprendizaje.</p>
-                            </div>
-                            <div class="module-card" onclick="generateSilabo()">
-                                <div class="module-icon">
-                                    <i class="fas fa-book-open"></i>
-                                </div>
-                                <h3 class="module-title">Crear sílabo</h3>
-                                <p class="module-desc">Genera sílabos académicos completos con estructura oficial, competencias, capacidades y sistemas de evaluación.</p>
-                            </div>
-                            <div class="module-card" onclick="generateMaterial()">
-                                <div class="module-icon">
-                                    <i class="fas fa-palette"></i>
-                                </div>
-                                <h3 class="module-title">Material visual</h3>
-                                <p class="module-desc">Crea presentaciones, infografías, esquemas y recursos visuales atractivos para mejorar la experiencia de aprendizaje.</p>
-                            </div>
-                            <div class="module-card" onclick="generateEvaluacion()">
-                                <div class="module-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <h3 class="module-title">Evaluar competencias</h3>
-                                <p class="module-desc">Diseña rúbricas, pruebas y sistemas de evaluación adaptados a competencias específicas y criterios de desempeño.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Planificación -->
-                    <div class="module-panel" id="planificacion-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Planificación Curricular</h1>
-                                <p class="panel-subtitle">Optimiza el tiempo de planificación de tus clases con IA</p>
-                            </div>
-                            <div class="panel-actions">
-                                <button class="panel-btn primary" onclick="generatePlanificacion()">
-                                    <i class="fas fa-plus"></i> Nueva Planificación
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-lightbulb"></i> Problema Identificado</h3>
-                            <p class="dashboard-desc" style="margin-top: 15px;">
-                                Los docentes invierten una cantidad considerable de tiempo en la elaboración de planificaciones y materiales académicos. 
-                                Este proceso se realiza de forma manual y tradicional, sin el apoyo de herramientas tecnológicas avanzadas.
-                            </p>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-brain"></i> Solución con IA</h3>
-                            <p class="dashboard-desc" style="margin-top: 15px;">
-                                Implementación de un asistente virtual institucional para la planificación curricular que utiliza 
-                                inteligencia artificial para generar sesiones educativas alineadas con la normativa educativa vigente 
-                                en menos de 30 segundos.
-                            </p>
-                        </div>
-                        
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card">
-                                <h3><i class="fas fa-clock"></i> Ahorro de Tiempo</h3>
-                                <div class="dashboard-stat">70%</div>
-                                <p class="dashboard-desc">Reducción en tiempo de planificación</p>
-                            </div>
-                            <div class="dashboard-card">
-                                <h3><i class="fas fa-check-circle"></i> Calidad</h3>
-                                <div class="dashboard-stat">95%</div>
-                                <p class="dashboard-desc">Planificaciones alineadas con currículo</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Sílabos -->
-                    <div class="module-panel" id="silabos-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Gestión de Sílabos</h1>
-                                <p class="panel-subtitle">Crea y gestiona sílabos académicos con IA</p>
-                            </div>
-                            <div class="panel-actions">
-                                <button class="panel-btn primary" onclick="generateSilabo()">
-                                    <i class="fas fa-plus"></i> Nuevo Sílabo
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-cogs"></i> Funcionalidades</h3>
-                            <div style="margin-top: 15px;">
-                                <ul style="list-style-type: none; padding-left: 0;">
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Generación automática de estructura de sílabos</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Adaptación a diferentes programas de estudio</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Inclusión de competencias y capacidades</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Sistema de evaluación integrado</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Materiales -->
-                    <div class="module-panel" id="materiales-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Materiales Educativos</h1>
-                                <p class="panel-subtitle">Crea materiales visuales atractivos para tus clases</p>
-                            </div>
-                            <div class="panel-actions">
-                                <button class="panel-btn primary" onclick="generateMaterial()">
-                                    <i class="fas fa-plus"></i> Nuevo Material
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-paint-brush"></i> Tipos de Materiales</h3>
-                            <div style="margin-top: 15px;">
-                                <div class="dashboard-grid">
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-presentation"></i> Presentaciones</h4>
-                                        <p class="dashboard-desc">Diapositivas interactivas y visuales</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-chart-bar"></i> Infografías</h4>
-                                        <p class="dashboard-desc">Resúmenes visuales de información clave</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-tasks"></i> Guías de Estudio</h4>
-                                        <p class="dashboard-desc">Materiales estructurados para estudiantes</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-video"></i> Contenido Multimedia</h4>
-                                        <p class="dashboard-desc">Videos y animaciones educativas</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Evaluación -->
-                    <div class="module-panel" id="evaluacion-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Evaluación de Competencias</h1>
-                                <p class="panel-subtitle">Diseña sistemas de evaluación eficientes</p>
-                            </div>
-                            <div class="panel-actions">
-                                <button class="panel-btn primary" onclick="generateEvaluacion()">
-                                    <i class="fas fa-plus"></i> Nueva Evaluación
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-clipboard-check"></i> Instrumentos de Evaluación</h3>
-                            <div style="margin-top: 15px;">
-                                <div class="dashboard-grid">
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-list-alt"></i> Rúbricas</h4>
-                                        <p class="dashboard-desc">Criterios de evaluación detallados</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-file-alt"></i> Pruebas Escritas</h4>
-                                        <p class="dashboard-desc">Exámenes y cuestionarios automatizados</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-project-diagram"></i> Proyectos</h4>
-                                        <p class="dashboard-desc">Evaluación de trabajos prácticos</p>
-                                    </div>
-                                    <div class="dashboard-card">
-                                        <h4><i class="fas fa-comments"></i> Evaluación Oral</h4>
-                                        <p class="dashboard-desc">Presentaciones y defensas</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Capacitación IA -->
-                    <div class="module-panel" id="capacitacion-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Capacitación en Inteligencia Artificial</h1>
-                                <p class="panel-subtitle">Aprende a utilizar herramientas de IA en educación</p>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-graduation-cap"></i> Programa de Capacitación</h3>
-                            <p class="dashboard-desc" style="margin-top: 15px;">
-                                La falta de dominio de herramientas de Inteligencia Artificial por el personal docente genera una oportunidad 
-                                para optimizar el tiempo y mejorar la eficiencia en la planificación curricular.
-                            </p>
-                        </div>
-                        
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card">
-                                <h3><i class="fas fa-play-circle"></i> Talleres Prácticos</h3>
-                                <div class="dashboard-stat">12</div>
-                                <p class="dashboard-desc">Sesiones de capacitación disponibles</p>
-                            </div>
-                            <div class="dashboard-card">
-                                <h3><i class="fas fa-certificate"></i> Micro-Credenciales</h3>
-                                <div class="dashboard-stat">5</div>
-                                <p class="dashboard-desc">Certificaciones disponibles</p>
-                            </div>
-                        </div>
-                        
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-chalkboard-teacher"></i> Contenido de Capacitación</h3>
-                            <div style="margin-top: 15px;">
-                                <ul style="list-style-type: none; padding-left: 0;">
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Introducción a la IA en educación</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Herramientas de IA para planificación curricular</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Creación de materiales con IA</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Evaluación automatizada con IA</li>
-                                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Ética y uso responsable de IA en educación</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Configuración -->
-                    <div class="module-panel" id="configuracion-panel">
-                        <div class="panel-header">
-                            <div>
-                                <h1 class="panel-title">Configuración</h1>
-                                <p class="panel-subtitle">Personaliza tu experiencia en Edu Assist</p>
-                            </div>
-                        </div>
-                        <div class="dashboard-card">
-                            <h3><i class="fas fa-user-cog"></i> Configuración de Usuario</h3>
-                            <div style="margin-top: 15px;">
-                                <label style="display: block; margin-bottom: 8px;">Nombre</label>
-                                <input type="text" class="login-input" id="userName" placeholder="Tu nombre" style="width: 100%; margin-bottom: 15px;">
-                                
-                                <label style="display: block; margin-bottom: 8px;">Institución</label>
-                                <input type="text" class="login-input" id="userInstitution" placeholder="Nombre de tu institución" style="width: 100%; margin-bottom: 15px;">
-                                
-                                <label style="display: block; margin-bottom: 8px;">Tema de la aplicación</label>
-                                <select class="login-input" id="appTheme" style="width: 100%; margin-bottom: 20px;">
-                                    <option value="oscuro">Oscuro</option>
-                                    <option value="claro">Claro</option>
-                                </select>
-                                
-                                <button class="panel-btn primary" onclick="saveUserConfig()" style="width: 100%;">
-                                    <i class="fas fa-save"></i> Guardar Configuración
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="anniversarySpecialMsg" class="aniversary-message">
+                <i class="fas fa-star-of-life"></i> 4 años, una vida de emociones <i class="fas fa-star-of-life"></i>
             </div>
         </div>
-        
-        <!-- Botón flotante para abrir el chat -->
-        <button class="chat-floating-btn" id="chatFloatingBtn">
-            <i class="fas fa-comments"></i>
+
+        <!-- SECCIÓN NUEVA: Orgullo por su carrera y metas -->
+        <div class="pride-section">
+            <div class="badge-senati">
+                <i class="fas fa-graduation-cap"></i> SENATI · Seguridad Industrial
+            </div>
+            <div class="pride-title">
+                <i class="fas fa-trophy" style="color:#d4af37;"></i> Mi orgullo más grande, María Fernanda
+            </div>
+            <div class="pride-text">
+                <strong>Estás terminando la carrera de Seguridad Industrial en el SENATI</strong> y no tengo palabras para describir lo que siento por ti. 
+                Verte luchar, crecer y construir un futuro brillante me llena de admiración. Eres fuerte, inteligente y valiente. 
+                Sé que serás una profesional increíble, velando por la seguridad de los demás, y yo estaré a tu lado aplaudiendo cada uno de tus logros.
+                <br><br>
+                <i class="fas fa-quote-left" style="color:#c0392b;"></i> 
+                Quiero que cumplas <strong>TODAS</strong> tus metas, las de hoy y las que aún sueñas. 
+                Nada me haría más feliz que verte alcanzar cada estrella que te propongas. 
+                Y si alguna vez el camino es difícil, recuerda que aquí estoy yo, tu compañero, para sostenerte y celebrar contigo.
+            </div>
+            <ul class="goal-list">
+                <li><i class="fas fa-hard-hat"></i> <strong>Graduarte con honores</strong> — porque sé que lo lograrás.</li>
+                <li><i class="fas fa-chart-line"></i> <strong>Crecer en tu profesión</strong> y salvar vidas con tus conocimientos.</li>
+                <li><i class="fas fa-plane"></i> <strong>Viajar y conocer el mundo</strong> — juntos, por supuesto.</li>
+                <li><i class="fas fa-home"></i> <strong>Construir un hogar lleno de amor y estabilidad</strong>, el que tanto mereces.</li>
+                <li><i class="fas fa-heart"></i> <strong>Ser infinitamente feliz</strong>, porque tu felicidad es la mía.</li>
+            </ul>
+            <div style="font-size: 0.9rem; margin-top: 12px; background: #fff0e6; border-radius: 30px; padding: 8px 12px; text-align: center;">
+                <i class="fas fa-hands-helping"></i> Prometo apoyarte en cada paso hacia tus sueños. <strong>¡Nada ni nadie apagará tu luz!</strong>
+            </div>
+        </div>
+
+        <!-- CARTA DE AMOR PERSONALIZADA -->
+        <div class="love-letter">
+            <div class="letter-title">
+                <i class="fas fa-envelope-open-text"></i> Para María Fernanda, el amor de mi vida
+            </div>
+            <div class="letter-text">
+                Mi amor, mi compañera de alma:
+                <br><br>
+                Hoy cumplimos 4 años y aún recuerdo como si fuera ayer ese 10 de junio cuando supe que contigo sería para siempre. 
+                No hay palabras para describir lo que siento por ti —eres mi calma, mi motivación, mi mayor orgullo.
+                <br><br>
+                Verte avanzar en la carrera de <strong>Seguridad Industrial en SENATI</strong> me llena de admiración. Eres una mujer luchadora, 
+                y sé que vas a cambiar vidas con tu profesión. Me siento sumamente orgulloso de ti, más de lo que las palabras pueden expresar.
+                <br><br>
+                <strong>Una vida junto a ti es lo único que deseo.</strong> Quiero despertar cada día a tu lado, celebrar tus triunfos, abrazarte en los días grises 
+                y construir un futuro donde ningún sueño quede sin cumplir. No quiero perderte, porque sin ti el mundo perdería su color.
+                <br><br>
+                Gracias por elegirme, por crecer conmigo, por regalarme tu sonrisa. Este 4to aniversario es solo el comienzo de una historia eterna. 
+                Te prometo luchar cada día por nosotros, por tu felicidad y por verte brillar.
+            </div>
+            <ul class="promise-list">
+                <li><i class="fas fa-check-circle"></i> Apoyarte siempre para que <strong>cumplas cada meta profesional y personal</strong>.</li>
+                <li><i class="fas fa-check-circle"></i> Cuidar tu corazón como el tesoro más valioso.</li>
+                <li><i class="fas fa-check-circle"></i> Ser tu lugar seguro, tu amigo y tu amante incondicional.</li>
+                <li><i class="fas fa-check-circle"></i> Recordarte cada día lo increíble que eres, María Fernanda.</li>
+            </ul>
+            <div class="signature">
+                Con toda mi alma, <br> Tu compañero de vida, que te ama sin medida. ✨
+            </div>
+        </div>
+
+        <!-- Botón de corazones -->
+        <button class="heart-button" id="sendHeartsBtn">
+            <i class="fas fa-heartbeat"></i> Tocar aquí, lluvia de amor para MF
+            <i class="fas fa-heart" style="animation: pulse 1s infinite;"></i>
         </button>
-        
-        <!-- Modal del chat -->
-        <div class="chat-modal" id="chatModal">
-            <div class="chat-modal-content">
-                <div class="chat-modal-header">
-                    <h3><i class="fas fa-robot"></i> Asistente Edu Assist</h3>
-                    <button class="close-chat-btn" id="closeChatBtn">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="chat-modal-body">
-                    <div class="chat-container">
-                        <div class="messages-container" id="messagesContainer">
-                            <div class="message bot-message">
-                                <div class="avatar bot-avatar">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <div class="message-content">
-                                    ¡Hola! Soy Edu Assist, tu asistente docente con IA. ¿En qué puedo ayudarte hoy?
-                                    <div class="quick-actions">
-                                        <div class="quick-action" onclick="handleQuickAction('Generar planificación')">Generar planificación</div>
-                                        <div class="quick-action" onclick="handleQuickAction('Crear sílabo')">Crear sílabo</div>
-                                        <div class="quick-action" onclick="handleQuickAction('Material visual')">Material visual</div>
-                                        <div class="quick-action" onclick="handleQuickAction('Evaluar competencias')">Evaluar competencias</div>
-                                    </div>
-                                    <div class="message-time" id="initialMessageTime"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="typing-indicator" id="typingIndicator">
-                            <div class="avatar bot-avatar">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="typing-dots">
-                                <div class="typing-dot"></div>
-                                <div class="typing-dot"></div>
-                                <div class="typing-dot"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="input-area">
-                            <div class="input-actions">
-                                <div class="input-action" onclick="attachFile()" title="Adjuntar archivo">
-                                    <i class="fas fa-paperclip"></i>
-                                </div>
-                                <div class="input-action" onclick="showCommands()" title="Mostrar comandos">
-                                    <i class="fas fa-terminal"></i>
-                                </div>
-                            </div>
-                            
-                            <input type="text" class="message-input" id="messageInput" placeholder="Escribe tu mensaje o pregunta...">
-                            
-                            <button class="send-button" id="sendButton">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <p style="font-size: 0.75rem; color:#b26b6b; margin-top: 0.2rem;"><i class="fas fa-smile-wink"></i> Presiona y envía una cascada de corazones para la mujer de mi vida</p>
     </div>
+    <footer>
+        <i class="fas fa-infinity"></i> 10 de Junio · 4 años junto a Maria Fernanda · Mis metas son las tuyas <i class="fas fa-infinity"></i>
+    </footer>
+</div>
 
-    <script>
-        // ================================
-        // INFORMACIÓN DEL PROYECTO Edu Assist
-        // ================================
-        
-        const projectInfo = {
-            tema: "La Inteligencia Artificial como herramienta para optimizar el tiempo en la planificación curricular docente",
-            problema: "Los docentes invierten una cantidad considerable de tiempo en la elaboración de planificaciones y materiales académicos. Este proceso se realiza de forma manual y tradicional, sin el apoyo de herramientas tecnológicas avanzadas.",
-            causa: "La causa de este comportamiento radica en la falta de capacitación y actualización tecnológica del personal docente.",
-            hipotesis: "Si los docentes del Instituto 'San Agustín' reciben formación sistemática en el uso de herramientas de Inteligencia Artificial, entonces podrán optimizar el tiempo y mejorar la eficiencia en la planificación curricular del Programa de Estudios de Asistencia Administrativa.",
-            solucion: "Implementación de un asistente virtual institucional para la planificación curricular que utiliza inteligencia artificial para generar sesiones educativas alineadas con la normativa educativa vigente en menos de 30 segundos.",
-            equipo: [
-                "RUTH YVANA FLORES GUERRERO",
-                "MARIBEL ELVIRA SALVATIERRA VIZCARDO", 
-                "EDGAR DIAZ AGUILAR",
-                "HAILEY ALEXANDER RIVAS POZO"
-            ],
-            objetivos: {
-                general: "Analizar cómo la inteligencia artificial puede optimizar el tiempo y mejorar la eficiencia en la planificación docente, contribuyendo al fortalecimiento de la innovación pedagógica.",
-                especificos: [
-                    "Identificar las principales dificultades que enfrentan los docentes durante el proceso de planificación educativa.",
-                    "Explorar las herramientas de inteligencia artificial disponibles que pueden aplicarse en la elaboración y gestión de la planificación docente.",
-                    "Diseñar una propuesta de planificación optimizada mediante el uso de inteligencia artificial.",
-                    "Evaluar la percepción y aceptación de los docentes respecto al uso de la inteligencia artificial como apoyo en la planificación.",
-                    "Formular recomendaciones para la integración ética y pedagógica de la IA en los procesos de planificación educativa."
-                ]
-            },
-            entrevistas: {
-                "Luisa Arévalo (52 años)": {
-                    profesion: "Contadora",
-                    experiencia: "15 años",
-                    respuestas: {
-                        tareas: "Las tareas que más tiempo me consumen son la planificación detallada (sesión de clase) y la revisión de trabajos académicos, lo que genera frustración por la sobre carga.",
-                        distribucion: "40% en planificación, 40% en enseñanza y 20 % en evaluación",
-                        informacion: "Valoro la información sobre estilos y ritmos de aprendizaje de los estudiantes para adaptar mejor a las sesiones de aprendizaje",
-                        ia: "La IA podría ser más útil en la organización temporal y en la personalización de contenidos actualizados.",
-                        preferencia: "Prefiero que un asistente de la IA me ofreciera opciones personalizadas para elegir, en lugar de planificaciones automáticas. Siento que perdería el interés de análisis cada información."
-                    }
-                },
-                "Dany Balarezo Ramírez (62 años)": {
-                    profesion: "Contadora", 
-                    experiencia: "36 años",
-                    respuestas: {
-                        tareas: "La parte que más tiempo me toma es la planificación semanal y mensual, porque debo revisar los sílabos, ajustar los contenidos y elaborar materiales manualmente. También la evaluación de los trabajos y llenar los informes administrativos me resulta agotador.",
-                        distribucion: "50% a la planificación, 30% a la enseñanza y 20% a la evaluación",
-                        informacion: "La observación directa de los estudiantes. Ver cómo aprenden, quiénes necesitan más apoyo y quiénes avanzan más rápido. No uso programas tecnológicos, me baso más en la experiencia y el trato diario con ellos.",
-                        ia: "Creo que podría ayudar en la organización del tiempo o tal vez en dar ideas para mejorar materiales. Pero no sabría usarla todavía; necesitaría que me enseñen primero cómo funciona.",
-                        preferencia: "Preferiría que me dé opciones, no que lo haga todo solo. Me gusta tener el control de lo que enseño y asegurarme que esté de acuerdo con el programa oficial."
-                    }
-                },
-                "Violeta Katherine Díaz Silva (35 años)": {
-                    profesion: "Administradora",
-                    experiencia: "2 años", 
-                    respuestas: {
-                        tareas: "Quizá en algunas ocasiones son las correcciones de trabajos y la planificación de algunos temas porque quiero hacerlo más entendible posible y que se adapte a la realidad.",
-                        distribucion: "40% de mi tiempo a la planificación, 40% a la enseñanza directa y 20% a la evaluación y retroalimentación",
-                        informacion: "Considero esencial conocer los niveles de conocimientos previos, el nivel del desempeño, los estilos de aprendizaje y la motivación de los estudiantes. Esa información permite adaptar estrategias y actividades al ritmo de cada grupo.",
-                        ia: "La IA sería especialmente útil en la organización temporal y la generación de propuestas didácticas iniciales, ya que puede agilizar la estructura base de una sesión. Sin embargo, la personalización debe seguir siendo guiada por el criterio humano del docente.",
-                        preferencia: "Preferiría que ofreciera opciones sugeridas, manteniendo siempre el control docente. La IA puede aportar ideas y estructuras, pero la planificación debe conservar el toque humano y contextual."
-                    }
-                }
-            }
-        };
+<script>
+    // FECHA DE INICIO: 10 de Junio de 2022
+    const START_DATE = new Date(2022, 5, 10);
+    
+    function updateDaysTogether() {
+        const today = new Date();
+        const startUTC = Date.UTC(START_DATE.getFullYear(), START_DATE.getMonth(), START_DATE.getDate());
+        const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+        const diffTime = todayUTC - startUTC;
+        const daysTogether = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('daysTogether').innerText = daysTogether >= 0 ? daysTogether : 0;
+        const monthsTogether = Math.floor(daysTogether / 30.44);
+        document.getElementById('monthsTogether').innerText = monthsTogether >= 0 ? monthsTogether : 0;
+    }
 
-        // ================================
-        // SISTEMA DE ALMACENAMIENTO
-        // ================================
-
-        class StorageSystem {
-            constructor() {
-                this.storageKey = 'eduassist_data';
-                this.defaultData = {
-                    usuario: {
-                        nombre: 'Docente',
-                        institucion: 'Instituto San Agustín'
-                    },
-                    planificaciones: [],
-                    silabos: [],
-                    materiales: [],
-                    evaluaciones: [],
-                    configuracion: {
-                        tema: 'oscuro'
-                    }
-                };
-                this.data = this.loadData();
-            }
-
-            loadData() {
-                try {
-                    const stored = localStorage.getItem(this.storageKey);
-                    if (stored) {
-                        return JSON.parse(stored);
-                    }
-                } catch (e) {
-                    console.error('Error loading data:', e);
-                }
-                return {...this.defaultData};
-            }
-
-            saveData() {
-                try {
-                    localStorage.setItem(this.storageKey, JSON.stringify(this.data));
-                    return true;
-                } catch (e) {
-                    console.error('Error saving data:', e);
-                    return false;
-                }
-            }
-
-            addDocument(tipo, documento) {
-                if (!this.data[tipo]) this.data[tipo] = [];
-                
-                documento.id = Date.now().toString();
-                documento.fechaCreacion = new Date().toISOString();
-                
-                this.data[tipo].push(documento);
-                this.saveData();
-                return documento.id;
-            }
-
-            getDocuments(tipo) {
-                return this.data[tipo] || [];
-            }
-
-            updateUserConfig(config) {
-                this.data.usuario = {...this.data.usuario, ...config};
-                this.saveData();
-            }
-
-            updateAppConfig(config) {
-                this.data.configuracion = {...this.data.configuracion, ...config};
-                this.saveData();
-            }
+    function getNextAnniversaryDate() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        let anniversary = new Date(currentYear, 5, 10);
+        const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        if (todayDateOnly > anniversary) {
+            return new Date(currentYear + 1, 5, 10);
         }
+        return anniversary;
+    }
 
-        // ================================
-        // SISTEMA DE IA Y GENERACIÓN DE CONTENIDO
-        // ================================
-
-        class AISystem {
-            getPredefinedResponse(prompt) {
-                const lowerPrompt = prompt.toLowerCase();
-                
-                // Respuestas sobre el proyecto Edu Assist
-                if (lowerPrompt.includes('proyecto') || lowerPrompt.includes('edu assist') || lowerPrompt.includes('investigación')) {
-                    return `**Información del Proyecto Edu Assist**
-
-**Tema:** ${projectInfo.tema}
-
-**Problema identificado:** ${projectInfo.problema}
-
-**Causa:** ${projectInfo.causa}
-
-**Hipótesis:** ${projectInfo.hipotesis}
-
-**Solución propuesta:** ${projectInfo.solucion}
-
-**Equipo de trabajo:**
-${projectInfo.equipo.map(miembro => `- ${miembro}`).join('\n')}
-
-**Objetivo general:** ${projectInfo.objetivos.general}
-
-**Objetivos específicos:**
-${projectInfo.objetivos.especificos.map((obj, i) => `${i+1}. ${obj}`).join('\n')}
-
-¿Te gustaría conocer más detalles sobre algún aspecto específico del proyecto?`;
-                }
-                
-                // Respuestas sobre las entrevistas
-                if (lowerPrompt.includes('entrevista') || lowerPrompt.includes('docentes') || lowerPrompt.includes('encuesta')) {
-                    return `**Resumen de las entrevistas a docentes:**
-
-**1. Luisa Arévalo (52 años) - Contadora - 15 años de experiencia**
-- Tareas que consumen más tiempo: ${projectInfo.entrevistas["Luisa Arévalo (52 años)"].respuestas.tareas}
-- Distribución de tiempo: ${projectInfo.entrevistas["Luisa Arévalo (52 años)"].respuestas.distribucion}
-- Preferencia sobre IA: ${projectInfo.entrevistas["Luisa Arévalo (52 años)"].respuestas.preferencia}
-
-**2. Dany Balarezo Ramírez (62 años) - Contadora - 36 años de experiencia**
-- Tareas que consumen más tiempo: ${projectInfo.entrevistas["Dany Balarezo Ramírez (62 años)"].respuestas.tareas}
-- Distribución de tiempo: ${projectInfo.entrevistas["Dany Balarezo Ramírez (62 años)"].respuestas.distribucion}
-- Preferencia sobre IA: ${projectInfo.entrevistas["Dany Balarezo Ramírez (62 años)"].respuestas.preferencia}
-
-**3. Violeta Katherine Díaz Silva (35 años) - Administradora - 2 años de experiencia**
-- Tareas que consumen más tiempo: ${projectInfo.entrevistas["Violeta Katherine Díaz Silva (35 años)"].respuestas.tareas}
-- Distribución de tiempo: ${projectInfo.entrevistas["Violeta Katherine Díaz Silva (35 años)"].respuestas.distribucion}
-- Preferencia sobre IA: ${projectInfo.entrevistas["Violeta Katherine Díaz Silva (35 años)"].respuestas.preferencia}
-
-**Conclusiones generales:**
-Los docentes coinciden en que la planificación consume gran parte de su tiempo y prefieren que la IA ofrezca opciones personalizadas manteniendo el control docente.`;
-                }
-                
-                // Respuestas específicas para comandos comunes
-                if (lowerPrompt.includes('hola') || lowerPrompt.includes('ayuda') || lowerPrompt.includes('ayudame')) {
-                    return `¡Hola! Soy Edu Assist, tu asistente docente. 
-
-Puedo ayudarte con:
-- **Generar planificación**: Diseño de sesiones de clase
-- **Crear sílabo**: Estructura académica oficial  
-- **Material visual**: Presentaciones, infografías, guías
-- **Evaluar competencias**: Rúbricas, pruebas, instrumentos
-- **Capacitación IA**: Aprende a usar IA en educación
-- **Información del proyecto**: Detalles sobre la investigación Edu Assist
-
-¿En qué puedo asistirte específicamente hoy?`;
-                }
-                
-                // Respuestas predefinidas para las 4 funciones principales
-                if (lowerPrompt.includes('planificación') || lowerPrompt.includes('sesión')) {
-                    return `Para crear una planificación curricular efectiva:
-
-**Pasos recomendados:**
-1. **Definir objetivos claros** - Establece qué competencias deben desarrollar los estudiantes
-2. **Seleccionar contenidos** - Elige los temas principales alineados con el currículo nacional
-3. **Diseñar actividades** - Crea experiencias de aprendizaje activas y participativas
-4. **Preparar recursos** - Selecciona materiales y herramientas adecuadas
-5. **Establecer evaluación** - Diseña instrumentos para medir el aprendizaje
-
-**Consejos prácticos:**
-- Considera los diferentes estilos de aprendizaje
-- Incluye actividades variadas (individuales, grupales, prácticas)
-- Adapta el tiempo según la complejidad de los temas
-- Prepara material de apoyo visual
-
-¿Te gustaría que genere una planificación específica para tu clase?`;
-                } else if (lowerPrompt.includes('sílabo') || lowerPrompt.includes('silabo')) {
-                    return `Para elaborar un sílabo académico completo:
-
-**Estructura recomendada:**
-1. **Datos generales del curso** - Nombre, código, créditos, horario
-2. **Competencias a desarrollar** - Habilidades y conocimientos que adquirirán los estudiantes
-3. **Contenidos temáticos** - Unidades y temas organizados secuencialmente
-4. **Metodología de enseñanza** - Estrategias y técnicas pedagógicas
-5. **Sistema de evaluación** - Criterios, instrumentos y porcentajes
-6. **Bibliografía** - Material de consulta básica y complementaria
-7. **Cronograma de actividades** - Distribución temporal de los contenidos
-
-**Consejos:**
-- Alinea con el currículo nacional vigente
-- Especifica criterios de evaluación claros y medibles
-- Incluye diversos recursos educativos (digitales y físicos)
-- Considera diferentes estilos de aprendizaje
-
-¿Necesitas ayuda con algún aspecto específico del sílabo?`;
-                } else if (lowerPrompt.includes('material') || lowerPrompt.includes('visual') || lowerPrompt.includes('recurso')) {
-                    return `Para crear materiales educativos efectivos:
-
-**Tipos de materiales que puedes crear:**
-- Presentaciones interactivas
-- Infografías visuales
-- Guías de estudio
-- Esquemas conceptuales
-- Actividades prácticas
-
-**Recomendaciones:**
-- Usa diseño atractivo y profesional
-- Incluye elementos visuales
-- Adapta al nivel de los estudiantes
-- Promueve la interactividad
-- Considera la accesibilidad
-
-¿Qué tipo de material te gustaría crear?`;
-                } else if (lowerPrompt.includes('evaluación') || lowerPrompt.includes('evaluar') || lowerPrompt.includes('competencias')) {
-                    return `Para diseñar sistemas de evaluación:
-
-**Instrumentos de evaluación:**
-- Rúbricas de evaluación
-- Pruebas escritas
-- Proyectos prácticos
-- Presentaciones orales
-- Portafolios de aprendizaje
-
-**Criterios importantes:**
-- Validez (mide lo que debe medir)
-- Confiabilidad (resultados consistentes)
-- Objetividad (criterios claros)
-- Integralidad (diversos aspectos)
-
-¿Necesitas ayuda con algún tipo específico de evaluación?`;
-                } else if (lowerPrompt.includes('capacitación') || lowerPrompt.includes('ia') || lowerPrompt.includes('inteligencia artificial')) {
-                    return `La capacitación en IA para docentes incluye:
-
-**Módulos disponibles:**
-1. **Introducción a la IA en educación** - Conceptos básicos y aplicaciones
-2. **Herramientas de IA para planificación** - Asistentes virtuales y generadores de contenido
-3. **Evaluación con IA** - Sistemas automatizados de evaluación
-4. **Ética y uso responsable** - Consideraciones importantes para el uso de IA
-
-**Beneficios:**
-- Optimización del tiempo de planificación
-- Personalización del aprendizaje
-- Mejora en la calidad educativa
-- Actualización tecnológica docente
-
-¿Te interesa algún módulo en particular?`;
-                } else {
-                    return `¡Hola! Soy Edu Assist, tu asistente docente. 
-
-Puedo ayudarte con:
-- **Generar planificación**: Diseño de sesiones de clase
-- **Crear sílabo**: Estructura académica oficial
-- **Material visual**: Presentaciones, infografías, guías
-- **Evaluar competencias**: Rúbricas, pruebas, instrumentos
-- **Capacitación IA**: Aprende a usar IA en educación
-- **Información del proyecto**: Detalles sobre la investigación Edu Assist
-
-¿En qué puedo asistirte específicamente hoy?`;
-                }
-            }
+    function updateCountdown() {
+        const nextAnniversary = getNextAnniversaryDate();
+        const now = new Date();
+        const difference = nextAnniversary - now;
+        if (difference <= 0) {
+            document.getElementById('daysLeft').innerText = "00";
+            document.getElementById('hoursLeft').innerText = "00";
+            document.getElementById('minutesLeft').innerText = "00";
+            document.getElementById('secondsLeft').innerText = "00";
+            const msgDiv = document.getElementById('anniversarySpecialMsg');
+            msgDiv.innerHTML = '<i class="fas fa-grin-hearts"></i> ¡HOY ES NUESTRO DÍA! ¡FELICES 4 AÑOS, MARIA FERNANDA! <i class="fas fa-grin-hearts"></i>';
+            msgDiv.style.background = "#ffc2c2";
+            return;
         }
-
-        // ================================
-        // SISTEMA DE CHATBOT INTELIGENTE
-        // ================================
-
-        class Chatbot {
-            constructor() {
-                this.aiSystem = new AISystem();
-                this.conversationHistory = [];
-            }
-
-            async processMessage(message) {
-                // Agregar mensaje del usuario al historial
-                this.conversationHistory.push({ role: 'user', content: message });
-                
-                // Mostrar indicador de escritura
-                showTypingIndicator();
-                
-                try {
-                    // Simular tiempo de procesamiento
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                    
-                    // Obtener respuesta de IA
-                    const response = this.aiSystem.getPredefinedResponse(message);
-                    
-                    // Agregar respuesta al historial
-                    this.conversationHistory.push({ role: 'assistant', content: response });
-                    
-                    return response;
-                } catch (error) {
-                    console.error('Error en el chatbot:', error);
-                    return "Lo siento, ha ocurrido un error. Por favor, intenta nuevamente.";
-                } finally {
-                    hideTypingIndicator();
-                }
-            }
-
-            getQuickActions(message) {
-                const lowerMessage = message.toLowerCase();
-                
-                if (lowerMessage.includes('proyecto') || lowerMessage.includes('edu assist') || lowerMessage.includes('investigación')) {
-                    return ["Ver objetivos", "Conocer equipo", "Ver entrevistas"];
-                } else if (lowerMessage.includes('planificación') || lowerMessage.includes('sesión')) {
-                    return ["Generar planificación", "Ver ejemplos", "Configurar duración"];
-                } else if (lowerMessage.includes('sílabo') || lowerMessage.includes('silabo')) {
-                    return ["Crear sílabo", "Estructura oficial", "Competencias"];
-                } else if (lowerMessage.includes('material') || lowerMessage.includes('visual')) {
-                    return ["Diseñar presentación", "Crear infografía", "Generar actividad"];
-                } else if (lowerMessage.includes('capacitación') || lowerMessage.includes('ia')) {
-                    return ["Ver módulos", "Inscribirme", "Recursos adicionales"];
-                } else if (lowerMessage.includes('evaluación') || lowerMessage.includes('evaluar')) {
-                    return ["Crear rúbrica", "Diseñar examen", "Lista de cotejo"];
-                }
-                
-                return ["Generar planificación", "Crear sílabo", "Material visual", "Evaluar competencias", "Información del proyecto"];
-            }
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (86400000)) / (3600000));
+        const minutes = Math.floor((difference % 3600000) / 60000);
+        const seconds = Math.floor((difference % 60000) / 1000);
+        document.getElementById('daysLeft').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('hoursLeft').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutesLeft').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('secondsLeft').innerText = seconds < 10 ? '0' + seconds : seconds;
+        if (days === 0 && hours < 12) {
+            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-hourglass-start"></i> ¡Ya casi, mi vida! El gran día está a punto de llegar 🌹';
+        } else if (days < 3 && days > 0) {
+            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-heart"></i> ¡Faltan poquitos días para celebrar 4 años! ❤️';
+        } else {
+            document.getElementById('anniversarySpecialMsg').innerHTML = '<i class="fas fa-star-of-life"></i> 4 años, una vida de emociones <i class="fas fa-star-of-life"></i>';
         }
+    }
 
-        // ================================
-        // INICIALIZACIÓN DE SISTEMAS
-        // ================================
+    updateDaysTogether();
+    updateCountdown();
+    setInterval(() => {
+        updateDaysTogether();
+        updateCountdown();
+    }, 1000);
 
-        const storageSystem = new StorageSystem();
-        const chatbot = new Chatbot();
-        let currentUser = null;
-
-        // ================================
-        // INTERFAZ DE USUARIO
-        // ================================
-
-        // Elementos del DOM
-        const loginContainer = document.getElementById('loginContainer');
-        const mainApp = document.getElementById('mainApp');
-        const loginButton = document.getElementById('loginButton');
-        const userWelcome = document.getElementById('userWelcome');
-        
-        const messagesContainer = document.getElementById('messagesContainer');
-        const messageInput = document.getElementById('messageInput');
-        const sendButton = document.getElementById('sendButton');
-        const typingIndicator = document.getElementById('typingIndicator');
-        
-        const uptimeCounter = document.getElementById('uptimeCounter');
-        const queryCounter = document.getElementById('queryCounter');
-        
-        // Contadores del dashboard
-        const planificacionesCount = document.getElementById('planificacionesCount');
-        const silabosCount = document.getElementById('silabosCount');
-        const materialesCount = document.getElementById('materialesCount');
-        const evaluacionesCount = document.getElementById('evaluacionesCount');
-
-        // Elementos del modal de chat
-        const chatFloatingBtn = document.getElementById('chatFloatingBtn');
-        const chatModal = document.getElementById('chatModal');
-        const closeChatBtn = document.getElementById('closeChatBtn');
-
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeSystem();
-            createParticles();
-            startUptimeCounter();
-            updateDashboardCounts();
-            
-            // Configurar hora del mensaje inicial
-            document.getElementById('initialMessageTime').textContent = new Date().toLocaleTimeString('es-ES', { 
-                hour: '2-digit', minute: '2-digit' 
-            });
-
-            // Cargar configuración de usuario
-            loadUserConfig();
-            
-            // Inicializar el sistema de scroll del chat
-            initializeChatScroll();
+    // CORAZONES FLOTANTES
+    const btn = document.getElementById('sendHeartsBtn');
+    function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        const heartTypes = ['❤️', '💖', '💗', '💓', '💕', '💞', '💘', '❤️‍🔥', '🌸', '🌹', '✨', '💌', '🏆', '🎓'];
+        const randomHeart = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+        heart.innerText = randomHeart;
+        const size = 1 + Math.random() * 2.2;
+        heart.style.fontSize = `${size}rem`;
+        heart.style.left = `${Math.random() * window.innerWidth}px`;
+        heart.style.bottom = '-20px';
+        const duration = 1.5 + Math.random() * 1.3;
+        heart.style.animation = `floatUpLove ${duration}s ease-out forwards`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), duration * 1000);
+    }
+    
+    function burstHearts(count = 28) {
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => createFloatingHeart(), i * 40);
+        }
+    }
+    
+    btn.addEventListener('click', () => {
+        burstHearts(35);
+        btn.style.transform = 'scale(0.97)';
+        setTimeout(() => btn.style.transform = '', 150);
+    });
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => burstHearts(12), 600);
+    });
+    
+    setInterval(() => {
+        const titleIcons = document.querySelectorAll('.title i');
+        titleIcons.forEach(icon => {
+            icon.style.transform = 'scale(1.2)';
+            setTimeout(() => icon.style.transform = '', 300);
         });
-
-        function initializeSystem() {
-            // Configurar evento de login
-            loginButton.addEventListener('click', handleLogin);
-            
-            // Configurar evento de enter en campos de login
-            document.getElementById('loginPassword').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleLogin();
-                }
-            });
-            
-            // Configurar navegación entre módulos
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const module = this.getAttribute('data-module');
-                    switchModule(module);
-                });
-            });
-            
-            // Configurar chat
-            sendButton.addEventListener('click', processUserInput);
-            messageInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    processUserInput();
-                }
-            });
-
-            // Configurar modal de chat
-            chatFloatingBtn.addEventListener('click', function() {
-                chatModal.style.display = 'flex';
-                messageInput.focus();
-                // Forzar scroll al fondo cuando se abre el modal
-                setTimeout(scrollToBottom, 100);
-            });
-
-            closeChatBtn.addEventListener('click', function() {
-                chatModal.style.display = 'none';
-            });
-
-            // Cerrar modal al hacer clic fuera
-            chatModal.addEventListener('click', function(e) {
-                if (e.target === chatModal) {
-                    chatModal.style.display = 'none';
-                }
-            });
-        }
-
-        function createParticles() {
-            const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 25; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = Math.random() * 6 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.background = i % 3 === 0 ? 'var(--primary)' : 
-                                          i % 3 === 1 ? 'var(--secondary)' : 'var(--education)';
-                container.appendChild(particle);
+    }, 4000);
+    
+    function checkSpecialToday() {
+        const today = new Date();
+        if (today.getMonth() === 5 && today.getDate() === 10) {
+            const msg = document.getElementById('anniversarySpecialMsg');
+            if (msg.innerText.indexOf('HOY ES NUESTRO DÍA') === -1) {
+                msg.innerHTML = '<i class="fas fa-grin-hearts"></i> ¡HOY ES NUESTRO DÍA! ¡FELICES 4 AÑOS, MARIA FERNANDA! <i class="fas fa-grin-hearts"></i>';
+                msg.style.background = "#ffc2c2";
             }
         }
-
-        function startUptimeCounter() {
-            let seconds = 0;
-            setInterval(() => {
-                seconds++;
-                const hours = Math.floor(seconds / 3600);
-                const minutes = Math.floor((seconds % 3600) / 60);
-                const secs = seconds % 60;
-                
-                uptimeCounter.textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                
-                queryCounter.textContent = storageSystem.getDocuments('planificaciones').length + 
-                                         storageSystem.getDocuments('silabos').length +
-                                         storageSystem.getDocuments('materiales').length +
-                                         storageSystem.getDocuments('evaluaciones').length;
-            }, 1000);
-        }
-
-        function updateDashboardCounts() {
-            // Estos valores están hardcodeados según la imagen proporcionada
-            planificacionesCount.textContent = '5';
-            silabosCount.textContent = '3';
-            materialesCount.textContent = '8';
-            evaluacionesCount.textContent = '6';
-        }
-
-        // ================================
-        // CORRECCIÓN DEL SCROLL
-        // ================================
-        
-        function initializeChatScroll() {
-            const chatModal = document.getElementById('chatModal');
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                        const displayStyle = chatModal.style.display;
-                        if (displayStyle === 'flex') {
-                            // Pequeño retraso para asegurar que el modal está completamente renderizado
-                            setTimeout(scrollToBottom, 100);
-                        }
-                    }
-                });
-            });
-            
-            observer.observe(chatModal, {
-                attributes: true,
-                attributeFilter: ['style']
-            });
-        }
-
-        function scrollToBottom() {
-            const messagesContainer = document.getElementById('messagesContainer');
-            // Usamos requestAnimationFrame para asegurar que el DOM se ha actualizado
-            requestAnimationFrame(() => {
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            });
-        }
-
-        // ================================
-        // AUTENTICACIÓN Y SESIÓN
-        // ================================
-
-        function handleLogin() {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            if (username && password) {
-                // Simular autenticación
-                if (username === 'docente' && password === 'password') {
-                    currentUser = {
-                        username: username,
-                        nombre: 'Docente',
-                        institucion: 'Instituto San Agustín'
-                    };
-                    
-                    // Actualizar datos de usuario
-                    storageSystem.updateUserConfig({
-                        nombre: currentUser.nombre,
-                        institucion: currentUser.institucion
-                    });
-                    
-                    // Mostrar aplicación principal
-                    loginContainer.style.display = 'none';
-                    mainApp.style.display = 'flex';
-                    
-                    // Actualizar interfaz
-                    userWelcome.textContent = `Bienvenido, ${currentUser.nombre}`;
-                    
-                    showNotification('Sesión iniciada correctamente', 'success');
-                } else {
-                    showNotification('Usuario o contraseña incorrectos', 'error');
-                }
-            } else {
-                showNotification('Por favor, completa todos los campos', 'error');
-            }
-        }
-
-        function logout() {
-            currentUser = null;
-            mainApp.style.display = 'none';
-            loginContainer.style.display = 'flex';
-            showNotification('Sesión cerrada correctamente', 'info');
-        }
-
-        // ================================
-        // NAVEGACIÓN ENTRE MÓDULOS
-        // ================================
-
-        function switchModule(module) {
-            // Ocultar todos los paneles
-            document.querySelectorAll('.module-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            
-            // Mostrar el panel seleccionado
-            document.getElementById(`${module}-panel`).classList.add('active');
-            
-            // Actualizar título del módulo
-            const titles = {
-                dashboard: 'Dashboard Principal',
-                planificacion: 'Planificación Curricular',
-                silabos: 'Gestión de Sílabos',
-                materiales: 'Materiales Educativos',
-                evaluacion: 'Evaluación de Competencias',
-                capacitacion: 'Capacitación en IA',
-                configuracion: 'Configuración'
-            };
-            
-            document.getElementById('moduleTitle').textContent = titles[module] || 'Edu Assist';
-            
-            // Actualizar navegación activa
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            document.querySelector(`.nav-item[data-module="${module}"]`).classList.add('active');
-            
-            // Actualizar contadores del dashboard si es necesario
-            if (module === 'dashboard') {
-                updateDashboardCounts();
-            }
-        }
-
-        // ================================
-        // CHATBOT INTERACTIVO
-        // ================================
-
-        async function processUserInput() {
-            const userInput = messageInput.value.trim();
-            if (!userInput) return;
-
-            addUserMessage(userInput);
-            messageInput.value = '';
-
-            try {
-                const response = await chatbot.processMessage(userInput);
-                const quickActions = chatbot.getQuickActions(userInput);
-                
-                addBotMessage(response, quickActions);
-            } catch (error) {
-                console.error('Error en processUserInput:', error);
-                addBotMessage("Lo siento, ha ocurrido un error. Por favor, intenta nuevamente.");
-            }
-        }
-
-        function addUserMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message user-message';
-            
-            messageDiv.innerHTML = `
-                <div class="message-content">
-                    ${escapeHtml(text)}
-                    <div class="message-time">${new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</div>
-                </div>
-                <div class="avatar user-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-            `;
-            
-            messagesContainer.appendChild(messageDiv);
-            
-            // Forzar el scroll después de que el mensaje se haya agregado al DOM
-            setTimeout(scrollToBottom, 50);
-        }
-
-        function addBotMessage(text, quickActions = []) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            
-            let quickActionsHTML = '';
-            if (quickActions && quickActions.length > 0) {
-                quickActionsHTML = `
-                    <div class="quick-actions">
-                        ${quickActions.map(action => 
-                            `<div class="quick-action" onclick="handleQuickAction('${escapeHtml(action)}')">${escapeHtml(action)}</div>`
-                        ).join('')}
-                    </div>
-                `;
-            }
-            
-            messageDiv.innerHTML = `
-                <div class="avatar bot-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="message-content">
-                    ${formatMessage(text)}
-                    ${quickActionsHTML}
-                    <div class="message-time">${new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</div>
-                </div>
-            `;
-            
-            messagesContainer.appendChild(messageDiv);
-            
-            // Forzar el scroll después de que el mensaje se haya agregado al DOM
-            setTimeout(scrollToBottom, 50);
-        }
-
-        function formatMessage(text) {
-            // Convertir saltos de línea a <br>
-            text = text.replace(/\n/g, '<br>');
-            
-            // Convertir **texto** a <strong>texto</strong>
-            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            
-            // Convertir - elemento a lista
-            text = text.replace(/^- (.*?)(?=<br>|$)/gm, '<li>$1</li>');
-            text = text.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-            
-            return text;
-        }
-
-        function handleQuickAction(action) {
-            const actions = {
-                'Generar planificación': () => generatePlanificacion(),
-                'Crear sílabo': () => generateSilabo(),
-                'Material visual': () => generateMaterial(),
-                'Evaluar competencias': () => generateEvaluacion(),
-                'Información del proyecto': () => {
-                    messageInput.value = 'proyecto';
-                    processUserInput();
-                },
-                'Ver objetivos': () => {
-                    addBotMessage(`**Objetivos del Proyecto Edu Assist**
-
-**Objetivo general:**
-${projectInfo.objetivos.general}
-
-**Objetivos específicos:**
-${projectInfo.objetivos.especificos.map((obj, i) => `${i+1}. ${obj}`).join('<br>')}`);
-                },
-                'Conocer equipo': () => {
-                    addBotMessage(`**Equipo de trabajo Edu Assist:**
-${projectInfo.equipo.map(miembro => `• ${miembro}`).join('<br>')}`);
-                },
-                'Ver entrevistas': () => {
-                    messageInput.value = 'entrevistas';
-                    processUserInput();
-                },
-                'Capacitación IA': () => {
-                    switchModule('capacitacion');
-                    chatModal.style.display = 'none';
-                }
-            };
-            
-            if (actions[action]) {
-                actions[action]();
-            } else {
-                // Si no es una acción predefinida, tratarla como entrada de usuario
-                messageInput.value = action;
-                processUserInput();
-            }
-        }
-
-        function showTypingIndicator() {
-            typingIndicator.style.display = 'flex';
-            scrollToBottom();
-        }
-
-        function hideTypingIndicator() {
-            typingIndicator.style.display = 'none';
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // ================================
-        // FUNCIONALIDADES ADICIONALES
-        // ================================
-
-        function quickGenerate() {
-            // Generación rápida de una planificación básica
-            generatePlanificacion();
-        }
-
-        function toggleTheme() {
-            const currentTheme = storageSystem.data.configuracion.tema;
-            const newTheme = currentTheme === 'oscuro' ? 'claro' : 'oscuro';
-            
-            storageSystem.data.configuracion.tema = newTheme;
-            storageSystem.saveData();
-            
-            applyTheme(newTheme);
-            showNotification(`Tema cambiado a ${newTheme}`, 'info');
-        }
-
-        function applyTheme(tema) {
-            if (tema === 'claro') {
-                document.documentElement.style.setProperty('--dark', '#f8fafc');
-                document.documentElement.style.setProperty('--light', '#2c3e50');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.9)');
-                document.documentElement.style.setProperty('--sidebar', '#e2e8f0');
-            } else {
-                document.documentElement.style.setProperty('--dark', '#2c3e50');
-                document.documentElement.style.setProperty('--light', '#ecf0f1');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
-                document.documentElement.style.setProperty('--sidebar', '#34495e');
-            }
-        }
-
-        function exportAllData() {
-            const dataStr = JSON.stringify(storageSystem.data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `eduassist_backup_${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification('Datos exportados exitosamente', 'success');
-        }
-
-        function showHelp() {
-            addBotMessage(`
-                <h3>Ayuda de Edu Assist</h3>
-                <p>Puedo ayudarte con:</p>
-                <ul>
-                    <li><strong>Generar planificación:</strong> Crea sesiones de clase completas</li>
-                    <li><strong>Crear sílabo:</strong> Elabora programas académicos oficiales</li>
-                    <li><strong>Material visual:</strong> Diseña presentaciones e infografías</li>
-                    <li><strong>Evaluar competencias:</strong> Desarrolla rúbricas e instrumentos de evaluación</li>
-                    <li><strong>Capacitación IA:</strong> Aprende a usar IA en educación</li>
-                    <li><strong>Información del proyecto:</strong> Conoce detalles sobre la investigación Edu Assist</li>
-                </ul>
-                <p>¡Solo tienes que pedirme lo que necesites! También puedes usar los módulos específicos para generar contenido más especializado.</p>
-            `, ["Generar planificación", "Crear sílabo", "Material visual", "Evaluar competencias", "Información del proyecto"]);
-        }
-
-        function attachFile() {
-            showNotification('Funcionalidad de adjuntar archivo en desarrollo', 'info');
-        }
-
-        function showCommands() {
-            messageInput.value = '/';
-            messageInput.focus();
-        }
-
-        function showNotification(mensaje, tipo = 'info') {
-            // Crear notificación
-            const notification = document.createElement('div');
-            notification.className = `notification ${tipo}`;
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-${tipo === 'success' ? 'check-circle' : tipo === 'warning' ? 'exclamation-triangle' : tipo === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                    <span>${mensaje}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Remover después de 5 segundos
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 5000);
-        }
-
-        // Funciones para los módulos principales
-        function generatePlanificacion() {
-            showNotification('Generando planificación curricular...', 'info');
-            addBotMessage(`
-                <h3>Planificación Curricular Generada</h3>
-                <p>He creado una planificación completa para tu clase. Incluye:</p>
-                <ul>
-                    <li><strong>Objetivos de aprendizaje</strong> claramente definidos</li>
-                    <li><strong>Actividades</strong> variadas y participativas</li>
-                    <li><strong>Recursos</strong> adecuados para el tema</li>
-                    <li><strong>Evaluación</strong> formativa y sumativa</li>
-                </ul>
-                <p>¿Te gustaría personalizar algún aspecto específico de esta planificación?</p>
-            `, ["Personalizar objetivos", "Modificar actividades", "Cambiar recursos", "Ajustar evaluación"]);
-        }
-
-        function generateSilabo() {
-            showNotification('Generando sílabo académico...', 'info');
-            addBotMessage(`
-                <h3>Sílabo Académico Generado</h3>
-                <p>He creado un sílabo completo con la estructura oficial. Incluye:</p>
-                <ul>
-                    <li><strong>Datos generales</strong> del curso</li>
-                    <li><strong>Competencias</strong> a desarrollar</li>
-                    <li><strong>Contenidos temáticos</strong> organizados</li>
-                    <li><strong>Metodología</strong> de enseñanza</li>
-                    <li><strong>Sistema de evaluación</strong> detallado</li>
-                    <li><strong>Bibliografía</strong> recomendada</li>
-                </ul>
-                <p>¿Qué aspecto del sílabo te gustaría ajustar?</p>
-            `, ["Modificar competencias", "Cambiar contenidos", "Ajustar evaluación", "Actualizar bibliografía"]);
-        }
-
-        function generateMaterial() {
-            showNotification('Generando material visual...', 'info');
-            addBotMessage(`
-                <h3>Material Visual Generado</h3>
-                <p>He creado material educativo visual atractivo. Incluye:</p>
-                <ul>
-                    <li><strong>Presentación</strong> con diseño profesional</li>
-                    <li><strong>Infografías</strong> con información clave</li>
-                    <li><strong>Esquemas</strong> para facilitar la comprensión</li>
-                    <li><strong>Actividades</strong> visuales para los estudiantes</li>
-                </ul>
-                <p>¿Qué tipo de material te gustaría ajustar o crear adicionalmente?</p>
-            `, ["Modificar presentación", "Crear más infografías", "Diseñar actividades", "Generar guía visual"]);
-        }
-
-        function generateEvaluacion() {
-            showNotification('Generando instrumento de evaluación...', 'info');
-            addBotMessage(`
-                <h3>Evaluación de Competencias Generada</h3>
-                <p>He creado un sistema de evaluación completo. Incluye:</p>
-                <ul>
-                    <li><strong>Rúbricas</strong> de evaluación detalladas</li>
-                    <li><strong>Pruebas</strong> con diferentes tipos de preguntas</li>
-                    <li><strong>Listas de cotejo</strong> para evaluar procesos</li>
-                    <li><strong>Instrumentos</strong> para evaluación formativa</li>
-                </ul>
-                <p>¿Qué aspecto del sistema de evaluación te gustaría ajustar?</p>
-            `, ["Modificar rúbricas", "Cambiar pruebas", "Ajustar criterios", "Personalizar instrumentos"]);
-        }
-
-        // Configuración de usuario
-        function loadUserConfig() {
-            const userData = storageSystem.data.usuario;
-            document.getElementById('userName').value = userData.nombre || '';
-            document.getElementById('userInstitution').value = userData.institucion || '';
-            document.getElementById('appTheme').value = storageSystem.data.configuracion.tema || 'oscuro';
-        }
-
-        function saveUserConfig() {
-            const userName = document.getElementById('userName').value;
-            const userInstitution = document.getElementById('userInstitution').value;
-            const appTheme = document.getElementById('appTheme').value;
-            
-            storageSystem.updateUserConfig({
-                nombre: userName,
-                institucion: userInstitution
-            });
-            
-            storageSystem.updateAppConfig({
-                tema: appTheme
-            });
-            
-            applyTheme(appTheme);
-            userWelcome.textContent = `Bienvenido, ${userName}`;
-            
-            showNotification('Configuración guardada exitosamente', 'success');
-        }
-
-        // Aplicar tema guardado al cargar
-        applyTheme(storageSystem.data.configuracion.tema);
-    </script>
+    }
+    checkSpecialToday();
+    setInterval(checkSpecialToday, 60000);
+</script>
 </body>
 </html>
